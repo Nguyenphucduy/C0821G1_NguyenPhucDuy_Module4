@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+<p style="color: blue">${msg}</p>
 <table border="1">
     <tr>
         <td>Lettuce</td>
@@ -17,9 +18,6 @@
         <tr>
             <c:forEach var="string" items="${stringList}">
             <td><c:out value="${string}"/></td>
-<%--            <td><c:out value="${string}"/></td>--%>
-<%--            <td><c:out value="${string}"/></td>--%>
-<%--            <td><c:out value="${string}"/></td>--%>
             </c:forEach>
         </tr>
 

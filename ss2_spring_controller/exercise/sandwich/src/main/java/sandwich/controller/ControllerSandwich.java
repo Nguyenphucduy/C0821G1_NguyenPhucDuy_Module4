@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import sandwich.service.IServiceSandwich;
 
 import java.util.ArrayList;
@@ -23,10 +24,10 @@ public class ControllerSandwich {
 //        return "view";
 //    }
 
-    @PostMapping("/sandwich")
+    @PostMapping(value = "/sandwich")
     public String list(@RequestParam("lettuce") Optional<String> lettuce, @RequestParam("tomato") Optional<String>tomato,
                        @RequestParam("mustard") Optional<String> mustard, @RequestParam("sprouts") Optional<String> sprouts,
-                       Model model) {
+                       Model model, RedirectAttributes redirectAttributes) {
 
         List<String> stringList = new ArrayList<>();
 
@@ -61,7 +62,8 @@ public class ControllerSandwich {
         }
 
         model.addAttribute("stringList", stringList);
-
+//        redirectAttributes.addFlashAttribute("msg","Create student successfully!");
+//        return "redirect:list";
         return "list";
     }
 }
