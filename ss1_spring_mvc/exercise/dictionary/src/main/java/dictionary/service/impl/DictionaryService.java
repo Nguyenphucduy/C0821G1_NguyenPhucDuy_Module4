@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 //@Service(value = "DictionaryService")
 @Service
-@Qualifier
 public class DictionaryService implements IDictionaryService {
     private static List<Dictionary> dictionaries = new ArrayList<>();
     static {
