@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d6b8b6cb-81a4-4175-8fb4-325e7443f0dd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+    <list default="true" id="d3d2e220-7d67-4482-89b5-68b2078fcbbb" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../exercise/sandwich/src/main/java/sandwich/controller/SandwichController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/currency_conversion/src/main/java/currency_conversion/bean/Currency.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/currency_conversion/src/main/java/currency_conversion/entity/Currency.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/currency_conversion/src/main/java/currency_conversion/controller/CurrencyConversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/currency_conversion/src/main/java/currency_conversion/controller/CurrencyConversionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/dictionary/src/main/java/dictionary/bean/Dictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/dictionary/src/main/java/dictionary/entity/Dictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/dictionary/src/main/java/dictionary/controller/DictionaryController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/dictionary/src/main/java/dictionary/controller/DictionaryController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/dictionary/src/main/java/dictionary/service/IDictionaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/dictionary/src/main/java/dictionary/service/IDictionaryService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/dictionary/src/main/java/dictionary/service/impl/DictionaryService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss1_spring_mvc/exercise/dictionary/src/main/java/dictionary/service/impl/DictionaryService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ss2_spring_controller.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/6.1/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/6.1/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/6.1/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/6.1/executionHistory/executionHistory.lock" afterDir="false" />
@@ -14,10 +21,18 @@
       <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/6.1/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/6.1/javaCompile/classAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/6.1/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/6.1/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/build/classes/java/main/sandwich/controller/ControllerSandwich.class" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/build/classes/java/main/sandwich/controller/ControllerSandwich.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/build/classes/java/main/sandwich/bean/Sandwich.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/build/classes/java/main/sandwich/controller/ControllerSandwich.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/build/classes/java/main/sandwich/service/IServiceSandwich.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/build/classes/java/main/sandwich/service/impl/ServiceSandwich.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/build/libs/sandwich-1.0-SNAPSHOT.war" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/build/libs/sandwich-1.0-SNAPSHOT.war" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/src/main/java/sandwich/controller/ControllerSandwich.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/src/main/java/sandwich/controller/ControllerSandwich.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/src/main/java/sandwich/bean/Sandwich.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/src/main/java/sandwich/controller/ControllerSandwich.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/src/main/java/sandwich/service/IServiceSandwich.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/src/main/java/sandwich/service/impl/ServiceSandwich.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/src/main/webapp/WEB-INF/views/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/src/main/webapp/WEB-INF/views/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/src/main/webapp/WEB-INF/views/view.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../exercise/sandwich/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../../exercise/sandwich/src/main/webapp/index.jsp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +42,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
   </component>
-  <component name="ProjectId" id="22MsSsi6FijYWonAsjvd7X6B4ec" />
+  <component name="ProjectId" id="22ObqyJYVuaosVQdT8UJmWY2Vvb" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -38,33 +53,22 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="d6b8b6cb-81a4-4175-8fb4-325e7443f0dd" name="Default Changelist" comment="" />
-      <created>1639658793926</created>
+      <changelist id="d3d2e220-7d67-4482-89b5-68b2078fcbbb" name="Default Changelist" comment="" />
+      <created>1639711774798</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1639658793926</updated>
-      <workItem from="1639658795176" duration="90000" />
+      <updated>1639711774798</updated>
+      <workItem from="1639711776324" duration="72000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="2" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="549" y="166" key="FileChooserDialogImpl" timestamp="1639658857973">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="549" y="166" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1639658857973" />
-    <state x="209" y="22" key="new project wizard" timestamp="1639658885075">
-      <screen x="0" y="0" width="1536" height="824" />
-    </state>
-    <state x="209" y="22" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1639658885075" />
   </component>
 </project>

@@ -11,25 +11,25 @@
         <tr>
             <td>Lettuce</td>
             <td>
-                <input type="checkbox" name="lettuce">
+                <input type="checkbox" value="lettuce" name="listCheckBox">
             </td>
         </tr>
         <tr>
             <td>Tomato</td>
             <td>
-                <input type="checkbox" name="tomato">
+                <input type="checkbox" value="tomato" name="listCheckBox">
             </td>
         </tr>
         <tr>
             <td>Mustard</td>
             <td>
-                <input type="checkbox" name="mustard">
+                <input type="checkbox" value="mustard" name="listCheckBox">
             </td>
         </tr>
         <tr>
             <td>Sprouts</td>
             <td>
-                <input type="checkbox" name="sprouts">
+                <input type="checkbox" value="sprouts" name="listCheckBox">
             </td>
         </tr>
         <tr>

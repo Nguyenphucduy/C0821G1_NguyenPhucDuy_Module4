@@ -4,23 +4,14 @@
 <head>
     <title>Title</title>
 </head>
+<h1>List Check Box</h1>
 <body>
-<p style="color: blue">${msg}</p>
-<table border="1">
-    <tr>
-        <td>Lettuce</td>
-        <td>Tomato</td>
-        <td>Mustard</td>
-        <td>Sprouts</td>
-    </tr>
-
-
-        <tr>
-            <c:forEach var="string" items="${stringList}">
-            <td><c:out value="${string}"/></td>
-            </c:forEach>
-        </tr>
-
-</table>
+<c:if test="${listCheckBox != null}">
+    <ul>
+        <c:forEach items="${listCheckBox}" var="list">
+            <li><c:out value="${list}"/></li>
+        </c:forEach>
+    </ul>
+</c:if>
 </body>
 </html>

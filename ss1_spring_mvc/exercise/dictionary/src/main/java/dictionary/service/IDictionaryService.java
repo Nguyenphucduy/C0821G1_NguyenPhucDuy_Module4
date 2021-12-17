@@ -1,7 +1,6 @@
 package dictionary.service;
 
-import dictionary.bean.Dictionary;
-import org.springframework.stereotype.Service;
+import dictionary.entity.Dictionary;
 
 import java.util.List;
 

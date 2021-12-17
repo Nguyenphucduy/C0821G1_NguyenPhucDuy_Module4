@@ -1,8 +1,7 @@
 package dictionary.service.impl;
 
-import dictionary.bean.Dictionary;
+import dictionary.entity.Dictionary;
 import dictionary.service.IDictionaryService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
