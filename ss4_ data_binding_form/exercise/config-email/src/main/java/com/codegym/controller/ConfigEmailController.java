@@ -26,11 +26,7 @@ public class ConfigEmailController {
 
     @PostMapping("info_config")
     public String updateEmail(@ModelAttribute("configEmail") ConfigEmail configEmail,Model model){
-
-        model.addAttribute("language", configEmail.getLanguage());
-        model.addAttribute("pageSize", configEmail.getPageSize());
-        model.addAttribute("spamsFilter", configEmail.getSpamsFilter());
-        model.addAttribute("signature", configEmail.getSignature());
+        model.addAttribute("configEmail",configEmail);
         return "info_config";
     }
 

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>Information</title>
@@ -11,7 +12,8 @@
             Language :
         </td>
         <td>
-            ${language}
+            <c:out value="${configEmail.language}"/>
+
         </td>
     </tr>
     <tr>
@@ -19,7 +21,7 @@
             Page Size:
         </td>
         <td>
-            ${pageSize}
+            <c:out value="${configEmail.pageSize}"/>
         </td>
     </tr>
     <tr>
@@ -27,7 +29,7 @@
             Spams Filter :
         </td>
         <td>
-            ${spamsFilter}
+            <c:out value="${configEmail.spamsFilter}"/>
         </td>
     </tr>
     <tr>
@@ -35,7 +37,7 @@
             Signature :
         </td>
         <td>
-            ${signature}
+            <c:out value="${configEmail.signature}"/>
         </td>
     </tr>
 

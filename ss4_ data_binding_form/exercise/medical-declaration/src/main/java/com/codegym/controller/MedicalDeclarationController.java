@@ -30,25 +30,7 @@ public class MedicalDeclarationController {
 
     @PostMapping("updateMedicalDeclaration")
     public String updateMedicalDeclaration(@ModelAttribute("medicalDeclaration") MedicalDeclaration medicalDeclaration, Model model){
-
-        model.addAttribute("hoTen", medicalDeclaration.getHoTen());
-        model.addAttribute("namSinh", medicalDeclaration.getNamSinh());
-        model.addAttribute("gioiTinh", medicalDeclaration.getGioiTinh());
-        model.addAttribute("quocTich", medicalDeclaration.getQuocTich());
-        model.addAttribute("soCMND", medicalDeclaration.getSoCMND());
-        model.addAttribute("thongTinDiLai", medicalDeclaration.getThongTinDiLai());
-        model.addAttribute("bienSoXe", medicalDeclaration.getBienSoXe());
-        model.addAttribute("soGhe", medicalDeclaration.getSoGhe());
-        model.addAttribute("ngayKhoiHanh", medicalDeclaration.getNgayKhoiHanh());
-        model.addAttribute("ngayKetThuc", medicalDeclaration.getNgayKetThuc());
-        model.addAttribute("moTa", medicalDeclaration.getMoTa());
-        model.addAttribute("diaChiLienLac", medicalDeclaration.getDiaChiLienLac());
-        model.addAttribute("diaChiNoiO", medicalDeclaration.getDiaChiNoiO());
-        model.addAttribute("soDienThoai", medicalDeclaration.getSoDienThoai());
-        model.addAttribute("email", medicalDeclaration.getEmail());
-        model.addAttribute("trieuChung", medicalDeclaration.getTrieuChung());
-        model.addAttribute("lichSuPhoiNhiem", medicalDeclaration.getLichSuPhoiNhiem());
-//        model.addAttribute("medicalDeclaration",medicalDeclaration);
+        model.addAttribute("medicalDeclaration",medicalDeclaration);
         return "info";
     }
 }
