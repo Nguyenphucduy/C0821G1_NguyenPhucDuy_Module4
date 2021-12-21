@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+</head>
+<body>
+<div style="background-color: red" th:include="~{student/common_student:: headerStudent}">
+
+</div>
+
+<h1>Student List</h1>
+<p><a href="/student/create">Create Student</a></p>
+<p style="color: blue" th:text="#{msg}"></p>
+<table border="1" style="width: 1000px">
+    <tr>
+        <th>No</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Date of birth</th>
+        <th>Rank</th>
+        <th>Gender</th>
+        <th colspan="2">Action</th>
+    </tr>
+    <tr th:each="studentObj,iter : ${students}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${studentObj.id}"></td>
+        <td th:text="${studentObj.name}"></td>
+        <td th:text="${studentObj.dateOfBirth}"></td>
+        <td th:if="${studentObj.grade <5}">Bad</td>
+        <td th:if="${studentObj.grade<8 && studentObj.grade>=5}">Good</td>
+        <td th:if="${studentObj.grade>=8}">Excellent</td>
+        </td>
+        <td th:if="${studentObj.gender == 0}">
+            Female
+        </td>
+        <td th:if="${studentObj.gender == 1}">
+            Male
+        </td>
+        </td>
+        <!--            Request param-->
+        <td><a th:href="@{/student/detail/(id = ${studentObj.id})}">Detail Student</a></td>
+        <!--            Path Variable-->
+        <td><a th:href="@{/student/detail/{id}(id = ${studentObj.id})}">Detail Student</a></td>
+    </tr>
+</table>
+<div th:replace="~{student/common_student:: footerStudent}"></div>
+</body>
+</html>
