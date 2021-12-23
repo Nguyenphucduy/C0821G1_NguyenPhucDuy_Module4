@@ -1,9 +1,16 @@
 package product_manager.entity;
-
-public class Product {
-    private int id;
+import javax.persistence.*;
+@Entity(name = "product")
+public class Product implements Cloneable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "id", columnDefinition = "INT")
+    private Integer id;
+//    @Column(name = "name" ,columnDefinition = "VARCHAR(255)")
     private String name;
+//    @Column(name = "price",columnDefinition = "DOUBLE")
     private long price;
+//    @Column(name = "manufacture",columnDefinition = "VARCHAR(255)")
     private String manufacture;
 
     public Product() {
@@ -16,11 +23,11 @@ public class Product {
         this.manufacture = manufacture;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -50,27 +50,27 @@ public class ProductController {
         redirect.addFlashAttribute("message", "Delete Done");
         return "redirect:/";
     }
-
-
-//    @PostMapping("/delete")
-//    public String delete(@RequestParam("idProduct") int id, RedirectAttributes redirect) {
-//        productService.remove(id);
-//        redirect.addFlashAttribute("message", "Delete Done");
-//        return "redirect:/";
-//    }
-
+//
+//
+////    @PostMapping("/delete")
+////    public String delete(@RequestParam("idProduct") int id, RedirectAttributes redirect) {
+////        productService.remove(id);
+////        redirect.addFlashAttribute("message", "Delete Done");
+////        return "redirect:/";
+////    }
+//
     @GetMapping("{id}/view")
     public String view(@PathVariable int id, Model model) {
         model.addAttribute("product", productService.findById(id));
         return "view";
     }
-    @PostMapping("/search")
-    public String search(@RequestParam("nameProduct") String name, Model model,RedirectAttributes redirect) {
-        model.addAttribute("product",productService.search(name));
-        if (productService.search(name)==null){
-            redirect.addFlashAttribute("message", "not found");
-            return "redirect:/";
-        }
-        return "view";
-    }
+//    @PostMapping("/search")
+//    public String search(@RequestParam("nameProduct") String name, Model model,RedirectAttributes redirect) {
+//        model.addAttribute("product",productService.search(name));
+//        if (productService.search(name)==null){
+//            redirect.addFlashAttribute("message", "not found");
+//            return "redirect:/";
+//        }
+//        return "view";
+//    }
 }
