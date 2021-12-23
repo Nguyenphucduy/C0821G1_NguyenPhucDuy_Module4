@@ -33,12 +33,12 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public Product findById(int id) {
+    public Product findById(Integer id) {
         return BaseRepository.entityManager.find(Product.class, id);
     }
 
     @Override
-    public void update(int id, Product product) {
+    public void update(Integer id, Product product) {
         if (product.getId() != null) {
             em.merge(product);
         } else {
@@ -47,7 +47,7 @@ public class ProductRepository implements IProductRepository {
     }
 
     @Override
-    public void remove(int id) {
+    public void remove(Integer id) {
         Product product = findById(id);
         if (product != null) {
             em.remove(product);

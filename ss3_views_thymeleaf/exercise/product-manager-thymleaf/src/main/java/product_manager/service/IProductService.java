@@ -9,11 +9,11 @@ public interface IProductService {
 
     void save(Product product);
 
-    Product findById(int id);
+    Product findById(Integer id);
 
-    void update(int id, Product product);
+    void update(Integer id, Product product);
 
-    void remove(int id);
+    void remove(Integer id);
 
 //    Product search(String name);
 }

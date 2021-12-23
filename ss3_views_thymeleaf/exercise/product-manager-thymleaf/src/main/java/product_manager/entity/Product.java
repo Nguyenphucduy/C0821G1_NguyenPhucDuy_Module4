@@ -9,14 +9,14 @@ public class Product implements Cloneable{
 //    @Column(name = "name" ,columnDefinition = "VARCHAR(255)")
     private String name;
 //    @Column(name = "price",columnDefinition = "DOUBLE")
-    private long price;
+    private Double price;
 //    @Column(name = "manufacture",columnDefinition = "VARCHAR(255)")
     private String manufacture;
 
     public Product() {
     }
 
-    public Product(int id, String name, long price, String manufacture) {
+    public Product(Integer id, String name, Double price, String manufacture) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -39,11 +39,11 @@ public class Product implements Cloneable{
         this.name = name;
     }
 
-    public long getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

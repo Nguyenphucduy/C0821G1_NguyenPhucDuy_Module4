@@ -33,7 +33,7 @@ public class ProductController {
         return "redirect:/";
     }
     @GetMapping("{id}/edit")
-    public String edit(@PathVariable int id, Model model) {
+    public String edit(@PathVariable Integer id, Model model) {
         model.addAttribute("product", productService.findById(id));
         return "edit";
     }
@@ -45,7 +45,7 @@ public class ProductController {
         return "redirect:/";
     }
     @GetMapping("{id}/delete")
-    public String delete(@PathVariable int id, Model model,RedirectAttributes redirect) {
+    public String delete(@PathVariable Integer id, Model model,RedirectAttributes redirect) {
         productService.remove(id);
         redirect.addFlashAttribute("message", "Delete Done");
         return "redirect:/";
@@ -60,7 +60,7 @@ public class ProductController {
 ////    }
 //
     @GetMapping("{id}/view")
-    public String view(@PathVariable int id, Model model) {
+    public String view(@PathVariable Integer id, Model model) {
         model.addAttribute("product", productService.findById(id));
         return "view";
     }
