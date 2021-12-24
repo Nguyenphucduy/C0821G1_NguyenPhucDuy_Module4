@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="hibernate.conf.xml/Hibernate" uuid="e661a2c8-e405-45ea-8185-7ec6006b41ce">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+E:/Duy Win/Java- Fullstack/Github/C0821G1_NguyePhucDuy_Module4/ss3_views_thymeleaf/exercise/product-manager-thymleaf/src/main/resources/hibernate.conf.xml</remarks>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/product_managers?createDatabaseIfNotExist=true</jdbc-url>
+    </data-source>
+  </component>
+</project>
