@@ -22,7 +22,8 @@ public class StudentService implements IStudentService {
 
     @Override
     public Student findById(Integer id) {
-        return iStudentRepository.findById(id).orElse(null);
+        return
+                iStudentRepository.findById(id).orElse(null);
     }
 
     @Override

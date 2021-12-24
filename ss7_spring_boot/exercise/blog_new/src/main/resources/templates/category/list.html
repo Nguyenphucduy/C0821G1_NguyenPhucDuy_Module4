@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Category List</title>
+</head>
+<body>
+
+</div>
+<p><a href="/category/create">Category Blog</a></p>
+<p style="color: blue" th:text="#{messenger}"></p>
+<h1>Category List</h1>
+<table border="1">
+    <tr>
+        <th>Number</th>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+
+    </tr>
+    <tr th:each="category,iter : ${categoryList}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${category.nameCategory}"></td>
+        <td><a th:href="@{/category/{id}/edit(id=${category.idCategory})}">edit</a></td>
+        <td><a th:href="@{/category/{id}/delete(id=${category.idCategory})}">delete</a></td>
+        <td><a th:href="@{/category/{id}/view(id=${category.idCategory})}">view</a></td>
+    </tr>
+</table>
+</body>
+</html>

@@ -39,7 +39,7 @@ public class StudentController {
 //        return "student/list";
 //    }
 
-    //Sử dụng ModelAndView.
+//    Sử dụng ModelAndView.
 //    @GetMapping(value = {"/list", ""})
 //    public ModelAndView listPage() {
 //        return new ModelAndView("student/list_student","students", iStudentService.getAll());
