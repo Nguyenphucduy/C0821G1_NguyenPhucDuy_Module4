@@ -5,11 +5,14 @@
     <title>Title</title>
 </head>
 <body>
-<form action="/create" method="post" th:object="${blog}">
+<form action="/blog/create" method="post" th:object="${blog}">
     <p>topic: </p>
     <input th:field="*{topic}"/>
     <p>content</p>
     <input  th:field="*{content}"/>
+    <select th:field="*{category}">
+        <option th:each="category : ${categoryList}" th:value="${category.idCategory}" th:text="${category.nameCategory}"></option>
+    </select>
     <input type="submit" value="create">
 </form>
 </body>

@@ -11,9 +11,8 @@ public class Category {
 
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
-
-
     private Set<Blog> blogs;
+
 
     public Set<Blog> getBlogs() {
         return blogs;

@@ -11,6 +11,5 @@ public interface ICategoryService {
 
     Category findById(Integer id);
 
-
     void remove(Integer id);
 }

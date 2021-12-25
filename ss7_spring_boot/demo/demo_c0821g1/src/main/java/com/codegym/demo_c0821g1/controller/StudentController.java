@@ -88,6 +88,7 @@ public class StudentController {
 //        model.addAttribute("students", studentList);
 //        return "student/list_student";
 //    }
+
     @GetMapping(value = {"/list", ""})
     public ModelAndView listPage(@RequestParam(value = "name", defaultValue = "")String name) {
         return new ModelAndView("student/list_student","students", iStudentService.findByName(name));
@@ -95,8 +96,7 @@ public class StudentController {
 
     @GetMapping(value = "list-page")
     public String listPageable(Model model, @RequestParam(value = "page", defaultValue = "0")int page) {
-        Sort sort = Sort.by("name").descending();
-        Page<Student> studentPage = iStudentService.findAll(PageRequest.of(page,5,sort));
+        Page<Student> studentPage = iStudentService.findAll(PageRequest.of(page,5));
         model.addAttribute("studentPage", studentPage);
         return "student/list_page";
     }

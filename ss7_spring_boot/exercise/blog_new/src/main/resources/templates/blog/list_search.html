@@ -5,27 +5,41 @@
 <body>
 
 </div>
-<p><a href="/create">Create Blog</a></p>
-<p style="color: blue" th:text="#{messenger}"></p>
+<p><a href="/blog/create">Create Blog</a></p>
+
+
+<form action="/blog/search" method="post">
+    <label>Topic: </label>
+    <input name="topic">
+    <button type="submit">Search</button>
+</form>
+
+
+<p style="color: blue" th:text="${messenger}"></p>
 <h1>Blog List</h1>
 <table border="1">
     <tr>
         <th>Number</th>
+        <th>Id</th>
         <th>Topic</th>
         <th>Content</th>
+        <th>Category</th>
         <th>Edit</th>
         <th>Delete</th>
         <th>View</th>
 
     </tr>
-    <tr th:each="blog,iter : ${blogList}">
+    <tr th:each="blog,iter : ${blogPage}">
         <td th:text="${iter.count}"></td>
+        <td th:text="${blog.id}"></td>
         <td th:text="${blog.topic}"></td>
         <td th:text="${blog.content}"></td>
+        <td th:text="${blog.category.nameCategory}"></td>
         <td><a th:href="@{{id}/edit(id=${blog.id})}">edit</a></td>
         <td><a th:href="@{{id}/delete(id=${blog.id})}">delete</a></td>
         <td><a th:href="@{{id}/view(id=${blog.id})}">view</a></td>
     </tr>
 </table>
+
 </body>
 </html>
