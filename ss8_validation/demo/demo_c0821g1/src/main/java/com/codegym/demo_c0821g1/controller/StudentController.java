@@ -56,8 +56,12 @@ public class StudentController {
 
 
     @GetMapping(value = "/detail/{id}")
-    public String getStudentDetail(@PathVariable(name = "id") Integer id, Model model) {
+    public String getStudentDetail(@PathVariable(name = "id") Integer id, Model model) throws Exception {
         Student student = iStudentService.findById(id);
+        // test @ExceptionHandle
+//        if (student==null){
+//            throw new Exception();
+//        }
         model.addAttribute("student", student);
         return "student/detail_student";
     }
@@ -114,5 +118,9 @@ public class StudentController {
         Page<Student> studentPage = iStudentService.findAll(PageRequest.of(page,5,sort));
         model.addAttribute("studentPage", studentPage);
         return "student/list_page";
+    }
+    @ExceptionHandler(Exception.class)
+    public String handleException(){
+        return "student/error";
     }
 }

@@ -1,0 +1,29 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Book List</h1>
+<p style="color: blue" th:text="${msg}"></p>
+<table border="1" style="width: 1000px">
+    <tr>
+        <th>Number</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Quantity</th>
+        <th>Borrow Book</th>
+        <th>give book back</th>
+    </tr>
+    <tr th:each="book,iterStar : ${bookList}">
+        <td th:text="${iterStar.count}"></td>
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.name}"></td>
+        <td th:text="${book.quantity}"></td>
+        <td><a th:href="@{/borrow/{id}(id = ${book.id})}">Borrow book</a></td>
+        <td><a th:href="@{/back/{id}(id = ${book.id})}">Borrow book</a></td>
+    </tr>
+</table>
+
+</body>
+</html>
