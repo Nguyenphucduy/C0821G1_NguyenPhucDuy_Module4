@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+<h2>Info Product</h2>
+<!--<p th:if="${product==null}">-->
+<!--    hello-->
+<!--</p>-->
+
+<p th:text="${product.id}"></p>
+<p th:text="${product.name}"></p>
+<p th:text="${product.price}"></p>
+<footer   th:replace="layout :: footer"></footer>
+</body>
+</html>

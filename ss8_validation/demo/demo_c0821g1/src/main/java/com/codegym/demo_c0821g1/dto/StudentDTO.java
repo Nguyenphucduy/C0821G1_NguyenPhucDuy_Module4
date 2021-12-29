@@ -18,7 +18,7 @@ public class StudentDTO implements Validator {
     @NotNull(message = "Tên không được để trống ( Not null)")
     @NotEmpty(message = "Tên không được để trống ( Not Empty")
     @NotBlank(message = "Tên không được để trống (NotBlank)")
-    @NameConstraint
+//    @NameConstraint
     private String name;
 
     @Pattern(regexp = "\\d{4}-\\d{2}-\\d{2}", message = "Date phải đúng định dạng yyyy-mm-dd")

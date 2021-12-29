@@ -16,12 +16,24 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
 
 @Controller
+// Khai báo session
+@SessionAttributes("studentTalkList")
 //Áp dụng cho toàn bộ các URL muốn vào controller này
 @RequestMapping("student")
 public class StudentController {
+// khởi tạo session
+    @ModelAttribute("studentTalkList")
+    public List<Student> createStudentTalkList() {
+        return new ArrayList<>();
+    }
 
     //Sử dụng interface
     @Autowired //Annotation
@@ -53,15 +65,23 @@ public class StudentController {
 //        return new ModelAndView("student/list_student","students", iStudentService.getAll());
 //    }
 
-
+    @GetMapping("/addTalkList/{id}")
+    //Tương tác session
+    public String addToTalkList(@PathVariable("id")Integer id, @ModelAttribute("studentTalkList")List<Student> students,
+                                RedirectAttributes redirectAttributes) {
+        Student student = iStudentService.findById(id);
+        students.add(student);
+        redirectAttributes.addFlashAttribute("msg","Add talk list successfully(Session)");
+        return "redirect:/student/list";
+    }
 
     @GetMapping(value = "/detail/{id}")
     public String getStudentDetail(@PathVariable(name = "id") Integer id, Model model) throws Exception {
+
         Student student = iStudentService.findById(id);
-        // test @ExceptionHandle
-//        if (student==null){
-//            throw new Exception();
-//        }
+        if (student == null) {
+            throw new RuntimeException();
+        }
         model.addAttribute("student", student);
         return "student/detail_student";
     }
@@ -76,8 +96,8 @@ public class StudentController {
 
     @GetMapping(value = "/create")
     public String getPageCreate(Model model) {
-        String[] genders = {"Nam","Nữ","Khác"};
-        model.addAttribute("genders",genders);
+        String[] genders = {"Nam", "Nữ", "Khác"};
+        model.addAttribute("genders", genders);
         model.addAttribute("classes", iClassService.findAll());
         model.addAttribute("student", new StudentDTO());
         return "student/create_student";
@@ -88,39 +108,55 @@ public class StudentController {
 //    @Validated -> hỗ trợ validate 1 phần/nhóm của model
     // BindingResult phải luôn luôn đứng ngay sau model cần validate
     public String createStudent(@Valid @ModelAttribute("student") StudentDTO studentDto,
-                                BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+                                BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model,
+                                HttpServletResponse response, @CookieValue(value = "cookieCount", defaultValue = "0") int cookieCount) {
 
 //       new StudentDTO().validate(studentDto,bindingResult);
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             model.addAttribute("classes", iClassService.findAll());
             return "student/create_student";
         }
         iStudentService.save(studentDto);
-        redirectAttributes.addFlashAttribute("msg", "Create student successfully!");
+        Cookie cookie = new Cookie("cookieCount", cookieCount + 1 + "");
+//Public cookie sang các đường dẫn khác trong application
+        cookie.setPath("/");
+        cookie.setHttpOnly(false);
+        cookie.setMaxAge(24 * 60 * 60); //24h
+        response.addCookie(cookie);
+
+        redirectAttributes.addFlashAttribute("msg", "Create student successfully!(cookieCount)");
         return "redirect:http://localhost:8080/student/list";
     }
 
-//    @GetMapping("search")
+    //    @GetMapping("search")
 //    public String searchStudent(@RequestParam(name = "name")String name, Model model) {
 //        List<Student> studentList= iStudentService.findByName(name);
 //        model.addAttribute("students", studentList);
 //        return "student/list_student";
 //    }
     @GetMapping(value = {"/list", ""})
-    public ModelAndView listPage(@RequestParam(value = "name", defaultValue = "")String name) {
-        return new ModelAndView("student/list_student","students", iStudentService.findByName(name));
+    public ModelAndView listPage(@RequestParam(value = "name", defaultValue = "") String name) {
+        return new ModelAndView("student/list_student", "students", iStudentService.findByName(name));
     }
 
     @GetMapping(value = "list-page")
-    public String listPageable(Model model, @RequestParam(value = "page", defaultValue = "0")int page) {
+    public String listPageable(Model model, @RequestParam(value = "page", defaultValue = "0") int page) {
         Sort sort = Sort.by("name").descending();
-        Page<Student> studentPage = iStudentService.findAll(PageRequest.of(page,5,sort));
+        Page<Student> studentPage = iStudentService.findAll(PageRequest.of(page, 5, sort));
         model.addAttribute("studentPage", studentPage);
         return "student/list_page";
     }
-    @ExceptionHandler(Exception.class)
-    public String handleException(){
-        return "student/error";
-    }
+
+//    @ExceptionHandler(Exception.class)
+//    public String handleException() {
+//        System.out.println("Hello1");
+//        return "student/test";
+//    }
+//
+//    @ExceptionHandler(RuntimeException.class)
+//        public String handleException1() {
+//        System.out.println("Hello2");
+//        return "student/test";
+//    }
 }

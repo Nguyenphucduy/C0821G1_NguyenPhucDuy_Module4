@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table border="1" style="width: 1000px">
+    <tr>
+        <th>No</th>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Date of birth</th>
+        <th>Rank</th>
+        <th>Gender</th>
+        <th>Class</th>
+    </tr>
+    <tr th:each="studentObj,iter : ${studentTalkList}">
+        <td th:text="${iter.count}"></td>
+        <td th:text="${studentObj.id}"></td>
+        <td th:text="${studentObj.name}"></td>
+        <td th:text="${studentObj.dateOfBirth}"></td>
+        <td th:if="${studentObj.grade <5}">Bad</td>
+        <td th:if="${studentObj.grade<8 && studentObj.grade>=5}">Good</td>
+        <td th:if="${studentObj.grade>=8}">Excellent</td>
+        </td>
+        <td th:if="${studentObj.gender == 0}">
+            Female
+        </td>
+        <td th:if="${studentObj.gender == 1}">
+            Male
+        </td>
+        </td>
+        <td th:text="${studentObj.classRoom.nameClass}"></td>
+        <!--            Request param-->
+     </tr>
+</table>
+</body>
+</html>
