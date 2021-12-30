@@ -37,7 +37,7 @@ public class BookController {
 
         //--------------------------------------
         CodeBook codeBook = new CodeBook();
-        int ramDom = (int) (Math.random() * 100);
+        int ramDom = (int) (Math.random() * 100000);
         codeBook.setCode(ramDom);
         codeBook.setId(book.getId());
         codeBook.setBook(book);
@@ -62,8 +62,10 @@ public class BookController {
         boolean check = false;
 
 
+
         for (CodeBook codeBook : iCodeBookService.findAll()) {
-            if (code == codeBook.getCode() && book.getId().equals(codeBook.getId())) {
+            if (code == codeBook.getCode() && book.getId().equals(codeBook.getBook().getId())) {
+                iCodeBookService.delete(codeBook);
                 check = true;
                 break;
             }

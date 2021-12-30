@@ -8,4 +8,6 @@ public interface ICodeBookService {
     void save(CodeBook codeBook);
 
     List<CodeBook> findAll();
+
+    void delete(CodeBook codeBook);
 }

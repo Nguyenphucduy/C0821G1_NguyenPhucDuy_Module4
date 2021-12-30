@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,6 +27,10 @@ public class HelloController {
 
         //Trang mà bạn muốn hiển thị
         return "hello";
+    }
+    @ModelAttribute("studentTalkList")
+    public List<Student> createStudentTalkList() {
+        return new ArrayList<>();
     }
 // chạy lần đầu sẽ ra lỗi 400- phải vào controller để khởi tạo session  qua @ModelAttribute
     @GetMapping("/talk-list")

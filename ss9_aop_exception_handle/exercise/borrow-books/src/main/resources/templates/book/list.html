@@ -13,7 +13,7 @@
         <th>Name</th>
         <th>Quantity</th>
         <th>Borrow Book</th>
-        <th>give book back</th>
+        <th>Give book back</th>
     </tr>
     <tr th:each="book,iterStar : ${bookList}">
         <td th:text="${iterStar.count}"></td>
@@ -21,7 +21,7 @@
         <td th:text="${book.name}"></td>
         <td th:text="${book.quantity}"></td>
         <td><a th:href="@{/borrow/{id}(id = ${book.id})}">Borrow book</a></td>
-        <td><a th:href="@{/back/{id}(id = ${book.id})}">Borrow book</a></td>
+        <td><a th:href="@{/back/{id}(id = ${book.id})}">Give book back</a></td>
     </tr>
 </table>
 

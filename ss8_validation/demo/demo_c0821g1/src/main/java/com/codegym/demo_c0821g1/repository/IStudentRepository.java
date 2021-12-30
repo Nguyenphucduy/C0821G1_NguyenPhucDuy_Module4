@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository(value = "iStudentRepository")
 public interface IStudentRepository extends JpaRepository<Student, Integer> {
-
+//    nativeQuery = true - > SQL , false -> HQL
     @Query(value = "select * from student where name like :name",nativeQuery = true)
     List<Student> getByName(@Param("name") String name);
 }
