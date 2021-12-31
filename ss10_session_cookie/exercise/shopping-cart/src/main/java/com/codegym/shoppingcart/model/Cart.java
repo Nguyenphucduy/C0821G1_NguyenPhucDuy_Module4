@@ -82,4 +82,15 @@ public class Cart {
         }
         return payment;
     }
+
+
+    public void quantityProduct(Product product, Integer quantity) {
+        if (!checkItemInCart(product)){
+            products.put(product,1);
+        } else {
+            Map.Entry<Product, Integer> itemEntry = selectItemInCart(product);
+            itemEntry.setValue(0);
+            products.replace(itemEntry.getKey(),quantity);
+        }
+    }
 }

@@ -7,7 +7,8 @@
     <a href="/shop">Shop</a>
 </h1>
 <h1>Your Cart</h1>
-<form th:action="@{/shop}" th:object="${cart}" method="post">
+
+<!--<form th:action="@{/shop}" th:object="${cart}" method="post">-->
     <h3>Total Items: <span th:text="${cart.countItemQuantity()}"></span></h3>
     <h3>Total Products: <span th:text="${cart.countProductQuantity()}"></span></h3>
     <table border="1">
@@ -24,6 +25,17 @@
                 <span th:text="${product.getValue()}"></span>
                 <a id="increase_button" th:href="@{/add/__${product.getKey().id}__(action='show')}"
                    th:text="${'+'}"></a>
+                <form th:action="@{/quantity}" th:object="${cart}" method="post">
+                    <input type="hidden" name="id" th:value="${product.getKey().id}"/>
+                    <input type="hidden" name="action" th:value="show"/>
+                    <p>quantity</p>
+                    <input type="number" name="quantity"/>
+                    <input type="submit" value="update">
+                </form>
+<!--                <a  th:href="@{/go_quantity/__${product.getKey().id}__(action='show')}"-->
+<!--                   th:text="quantity"></a>-->
+
+
             </td>
             <td th:text="${product.getKey().price}"></td>
             <td><a th:href="@{/info/{id}(id = ${product.getKey().id})}">Info</a></td>
@@ -35,7 +47,7 @@
             <td><a th:href="@{/payment}">Payment</a></td>
         </tr>
     </table>
-</form>
+<!--</form>-->
 
 <footer   th:replace="layout :: footer"></footer>
 </body>

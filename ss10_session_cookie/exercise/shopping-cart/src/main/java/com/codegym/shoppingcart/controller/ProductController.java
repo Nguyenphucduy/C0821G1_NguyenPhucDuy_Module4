@@ -45,6 +45,30 @@ public class ProductController {
         return "redirect:/shop";
     }
 
+//    @GetMapping("/go_quantity/{id}")
+//    public String goQuantityToCart(@PathVariable Long id, @ModelAttribute("cart") Cart cart, @RequestParam("action") String action,Model model) {
+//        model.addAttribute("cart",cart);
+//        model.addAttribute("id",id);
+//        model.addAttribute("action",action);
+//        return "quantity";
+//    }
+
+
+    @PostMapping("/quantity")
+    public String quantityToCart(@RequestParam("id") Long id, @ModelAttribute("cart") Cart cart, @RequestParam("action") String action,@RequestParam("quantity") Integer quantity) {
+        Optional<Product> productOptional = productService.findById(id);
+        if (!productOptional.isPresent()) {
+            return "/error.404";
+        }
+        if (action.equals("show")) {
+            cart.quantityProduct(productOptional.get(),quantity);
+            return "redirect:/shopping-cart";
+        }
+        cart.addProduct(productOptional.get());
+        return "redirect:/shop";
+    }
+
+
     @GetMapping("/update/{id}")
     public String update(@PathVariable Long id, @ModelAttribute("cart") Cart cart, @RequestParam("action") String action) {
         Optional<Product> productOptional = productService.findById(id);
@@ -58,15 +82,24 @@ public class ProductController {
         cart.addProduct(productOptional.get());
         return "redirect:/shop";
     }
+
+
     @GetMapping(value = "/info/{id}")
     public String getProductInfo(@PathVariable(name = "id") Long id, Model model) {
 
-        Product product = productService.getById(id);
+//        Product product = productService.getById(id);
+//Optional là kiểu đối tượng có thì lấy giá mà không có cũng lấy giá trì( trả về null)
 
-//        Optional<Product> productOptional = productService.findById(id);
-        model.addAttribute("product",product);
+        Optional<Product> product = productService.findById(id);
+        if (!product.isPresent()) {
+            return "/error.404";
+        }
+        model.addAttribute("product",product.get());
         return "info";
     }
+
+
+
     @GetMapping("/payment")
     public String payment(@ModelAttribute("cart") Cart cart, HttpSession session){
         // tham chiếu đến đối tượng cart đó á, set lại Map trong cart đó là được
