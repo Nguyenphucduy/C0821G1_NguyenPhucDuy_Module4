@@ -11,7 +11,15 @@
     <input name="name">
     <button type="submit"></button>
 </form>
-<h1>Student List</h1>
+<form action="" method="get" id="form_i18n">
+    <select name="lang" onchange="summitForm()">
+        <option value="vi">Vietnamese</option>
+        <option value="en">English</option>
+        <option value="ja">Japanese</option>
+    </select>
+      <button type="submit">Summit</button>
+</form>
+<h1 th:text="#{list.title}">Student List</h1>
 <p><a href="/student/create">Create Student</a></p>
 <p style="color: blue" th:text="${msg}"></p>
 <table border="1" style="width: 1000px">
