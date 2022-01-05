@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+<label>category</label>
+<input id="category" type="text"><br>
+<input type="button" id="btn1" value="Submit" onclick="addCategory()">
+</table>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+        getListBlog();
+
+    });
+
+
+
+
+    function getListBlog() {
+    $.ajax({
+        contentType: "application/json",
+        url: "http://localhost:8080/rest-blogs",
+        type: "GET",
+        success: function (res) {
+            creatTable(res);
+            console.log("thanh cong");
+        },
+
+        error: function () {
+            console.log("khong thanh cong");
+        }
+    })
+    }
+
+    function creatTable(listBlog) {
+        $('#table1').html('<tr>\n' +
+            '        <th>topic</th>\n' +
+            '        <th>content</th>\n' +
+            '        <th>category</th>\n' +
+            '    </tr>');
+        let rows = "";
+        for (let i = 0; i < listBlog.length; i++) {
+            rows += '  <tr>\n' +
+                '        <td>' + listBlog[i].topic + '</td>\n' +
+                '        <td>' + listBlog[i].content + '</td>\n' +
+                '        <td>' + listBlog[i].category.nameCategory + '</td>\n' +
+                '    </tr>'
+        }
+        $('#table1').append(rows);
+    }
+
+    function addCategory() {
+       let categoryName =$('#category').val();
+        let category = {
+            nameCategory: categoryName
+        };
+        $.ajax({
+            contentType: "application/json",
+            url: "http://localhost:8080",
+            type: "POST",
+            data: JSON.stringify(category),
+            success: function (res) {
+                console.log(res);
+                getListBlog()
+            },
+            error: function () {
+                console.log("không thành công");
+            }
+        })
+    }
+</script>
+</body>
+</html>

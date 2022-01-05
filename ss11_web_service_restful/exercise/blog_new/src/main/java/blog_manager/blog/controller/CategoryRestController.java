@@ -23,9 +23,9 @@ public class CategoryRestController {
 
     //    Xem danh sách các bài viết
 
-    @GetMapping("/restBlogs")
-    public ResponseEntity<Iterable<Blog>> findAllBlog() {
-        List<Blog> blogs = (List<Blog>) iBlogService.findAll();
+    @GetMapping("/rest-blogs")
+    public ResponseEntity<List<Blog>> findAllBlog() {
+        List<Blog> blogs = iBlogService.findAll();
         if (blogs.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -36,7 +36,7 @@ public class CategoryRestController {
 //    Xem chi tiết một bài viết
 
 
-    @GetMapping("/restBlogs/{id}")
+    @GetMapping("/rest-blogs/{id}")
     public ResponseEntity<Blog> findBlogById(@PathVariable Integer id) {
         Optional<Blog> blog = iBlogService.getById(id);
         if (!blog.isPresent()) {

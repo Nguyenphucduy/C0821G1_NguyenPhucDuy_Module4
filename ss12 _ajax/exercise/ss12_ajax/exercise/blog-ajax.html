@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách bài viết</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+
+
+<div >
+    <div >
+        <div >
+            <input  type="text" placeholder="search" id="topic">
+            <button  id="search">Tìm kiếm</button>
+        </div>
+    </div>
+    <div>
+        <table border="1">
+            <thead >
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Category</th>
+            </tr>
+            </thead>
+            <tbody id="content">
+
+            </tbody>
+        </table>
+    </div>
+    <button  id="loadMore">Xem thêm</button>
+</div>
+
+
+
+<script>
+    $(document).ready(function () {
+        let index = 0;
+        let data = '';
+        loadData(index);
+        $('#search').click(function () {
+            data = '';
+            index = 0;
+            loadData(index);
+        });
+        $('#loadMore').click(function () {
+            index += 2;
+            loadData(index);
+        });
+        function loadData(index) {
+            let topic = $('#topic').val();
+            console.log(topic);
+            $.ajax(
+                {
+                    // headers: {
+                    //     'Accept': 'application/json', chấp nhận kiểu dữ liệu json
+                    //     'Content-Type': 'application/json', kiểu dữ liệu
+                    //     'Access-Control-Allow-Origin': '*', , cài đặt các ứng dụng được phép truy cập
+                    //     'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT',, cài đặt các giao thức được phép thực hiện
+                    // },
+                    // headers: {
+                    //     'Accept': 'application/json',
+                    //     'Content-Type': 'application/json',
+                    //     'Access-Control-Allow-Origin': '*',
+                    //     'Access-Control-Allow-Methods': 'GET,POST,OPTIONS,DELETE,PUT'
+                    // },
+                    contentType: "application/json",
+                    type: "GET",
+                    // dataType: 'json', use khi chỉ rõ produces & consumes
+                    url: `http://localhost:8080/api/blog?topic=${topic}&index=${index}`,
+                    success: function (listBlog) {
+                        for (let i =0; i< listBlog.length; i++){
+                            data += "         <tr>\n" +
+                                "                <td>" + listBlog[i].topic + "</td>\n" +
+                                "                <td>" + listBlog[i].content + "</td>\n" +
+                                "                <td>" + listBlog[i].category.nameCategory + "</td>\n" +
+                                "            </tr>"
+                        }
+                        $('#content').html(data);
+                        // console.log(listBlog);
+                    }
+                }
+            )
+        }
+
+        // function loadDataView() {
+        //     $.ajax(
+        //         {
+        //             type: "GET",
+        //             dataType: 'html',
+        //             url: `http://localhost:8080/`,
+        //             success: function (listBlog) {
+        //                 console.log(listBlog);
+        //             }
+        //         }
+        //     )
+        // }
+        // loadDataView();
+    })
+</script>
+</body>
+</html>
