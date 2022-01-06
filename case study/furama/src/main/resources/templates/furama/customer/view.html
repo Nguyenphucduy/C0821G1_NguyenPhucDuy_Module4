@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>View Customer</h1>
+<table border="1">
+    <tr>
+        <th>Customer Code</th>
+        <th>customerName</th>
+        <th>customerDateOfBirth</th>
+        <th>customerGender</th>
+        <th>customerCardId</th>
+        <th>customerPhoneNumber</th>
+        <th>customerEmail</th>
+        <th>customerAddress</th>
+        <th>customerType</th>
+        <th>Update</th>
+        <th>Delete</th>
+
+    </tr>
+    <tr>
+        <td th:text="${customer.customerCode}"></td>
+        <td th:text="${customer.name}"></td>
+        <td th:text="${customer.dateOfBirth}"></td>
+        <td th:text="${customer.gender}"></td>
+        <td th:text="${customer.cardId}"></td>
+        <td th:text="${customer.phoneNumber}"></td>
+        <td th:text="${customer.email}"></td>
+        <td th:text="${customer.address}"></td>
+        <td th:text="${customer.customerType.customerTypeName}"></td>
+        <td><a th:href="@{/customer/{id}/update(id=${customer.customerId})}">update</a></td>
+        <td><a th:href="@{/customer/{id}/delete(id=${customer.customerId})}">delete</a></td>
+    </tr>
+</table>
+
+</body>
+</html>
