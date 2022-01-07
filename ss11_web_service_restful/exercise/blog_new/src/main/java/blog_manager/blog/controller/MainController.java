@@ -12,7 +12,8 @@ import java.security.Principal;
 
 @Controller
 public class MainController {
-
+//    Ứng dụng chỉ cho phép người dùng đã đăng nhập được phép viết bài blog.
+//    Người dùng không đăng nhập chỉ được phép xem các bài viết.
     @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");
@@ -46,5 +47,32 @@ public class MainController {
 
         return "userInfoPage";
     }
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String adminPage(Model model, Principal principal) {
 
+        User loginedUser = (User) ((Authentication) principal).getPrincipal();
+
+        String userInfo = WebUtils.toString(loginedUser);
+        model.addAttribute("userInfo", userInfo);
+
+        return "adminPage";
+    }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String accessDenied(Model model, Principal principal) {
+        if (principal != null) {
+            User loginedUser = (User) ((Authentication) principal).getPrincipal();
+
+            String userInfo = WebUtils.toString(loginedUser);
+
+            model.addAttribute("userInfo", userInfo);
+
+            String message = "Hi " + principal.getName() //
+                    + "<br> You do not have permission to access this page!";
+            model.addAttribute("message", message);
+
+        }
+
+        return "403Page";
+    }
 }

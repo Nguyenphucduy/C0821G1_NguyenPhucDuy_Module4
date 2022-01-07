@@ -1,5 +1,7 @@
 package com.codegym.demo_c0821g1.utils.annotation;
 
+import com.codegym.demo_c0821g1.utils.annotation.validator.NameValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import java.lang.annotation.*;

@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return bCryptPasswordEncoder;
     }
 
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
@@ -34,7 +35,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Các trang không yêu cầu login
         http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
+// Các trang cả user và admin đều truy cập đc
+        http.authorizeRequests()
+                .antMatchers("/userInfo", "/student/", "/student/list", "/student/detail")
+                .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
+// Các trang chỉ admin đều truy cập đc
+        http.authorizeRequests()
+                //                .antMatchers("/admin/**", "/user/**") cách phân quyền nhanh
+                .antMatchers("/admin", "/student/create")
+                .access("hasRole('ROLE_ADMIN')");
 
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
 
         // Cấu hình cho Login Form.
         http.authorizeRequests().and().formLogin()//

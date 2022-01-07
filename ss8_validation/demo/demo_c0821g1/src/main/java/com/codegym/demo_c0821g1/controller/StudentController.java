@@ -76,6 +76,7 @@ public class StudentController {
     }
 
     @GetMapping(value = "/detail/{id}")
+//    @ResponseBody thay cho @RestController
     public String getStudentDetail(@PathVariable(name = "id") Integer id, Model model) throws Exception {
 
         Student student = iStudentService.findById(id);

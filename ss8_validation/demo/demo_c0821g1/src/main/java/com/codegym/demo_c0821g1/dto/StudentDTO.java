@@ -1,6 +1,6 @@
 package com.codegym.demo_c0821g1.dto;
 
-import com.codegym.demo_c0821g1.common.NameConstraint;
+import com.codegym.demo_c0821g1.utils.annotation.NameConstraint;
 import com.codegym.demo_c0821g1.model.ClassRoom;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
