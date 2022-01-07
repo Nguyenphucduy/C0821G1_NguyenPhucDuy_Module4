@@ -1,23 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Customer List</title>
 </head>
-
 <body>
 
+</div>
 <p><a href="/customer/admin/create-page">Create Customer</a></p>
 
 
-<form action="/customer/user/search" method="post">
-    <label>Name Customer:
-        <input type="text" name="name">
-    </label>
-    <button type="submit">Search</button>
-</form>
-
-
-<p style="color: blue" th:text="${messenger}"></p>
 
 <h1>Customer List</h1>
 <table border="1">
@@ -53,19 +43,5 @@
         <td><a th:href="@{/customer/user/{id}/view(id=${customer.customerId})}">view</a></td>
     </tr>
 </table>
-<span>
-    <a th:if="${customers.hasPrevious()}" th:href="@{/customer/user/list(page = ${customers.number - 1})}">
-        Previous
-    </a>
-     <a th:if="${customers.hasNext()}" th:href="@{/customer/user/list(page = ${customers.number + 1})}">
-        Next
-    </a>
-    <p>
-        <span th:each="pageNo: ${#numbers.sequence(0,customers.totalPages - 1)}">
-            <a th:href="@{/customer/user/list(page = ${pageNo})}" th:text="${pageNo}"></a>
-        </span>
-    </p>
-</span>
-<!--<footer   th:replace="layout :: footer"></footer>-->
 </body>
 </html>

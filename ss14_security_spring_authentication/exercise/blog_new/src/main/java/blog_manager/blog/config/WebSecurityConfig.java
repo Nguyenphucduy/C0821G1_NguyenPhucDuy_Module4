@@ -29,19 +29,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
+//    Ứng dụng chỉ cho phép người dùng đã đăng nhập được phép viết bài blog.
+//    Người dùng không đăng nhập chỉ được phép xem các bài viết.
         http.csrf().disable();
 
         // Các trang không yêu cầu login
-        http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
+        http.authorizeRequests().antMatchers("/", "/login", "/logout", "/blog/").permitAll();
 // Các trang cả user và admin đều truy cập đc
         http.authorizeRequests()
-                .antMatchers("/userInfo", "/blog/")
+                .antMatchers("/userInfo", "/blog/create")
                 .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 // Các trang chỉ admin đều truy cập đc
         http.authorizeRequests()
                 //                .antMatchers("/admin/**", "/user/**") cách phân quyền nhanh
-                .antMatchers("/admin", "/blog/create")
+                .antMatchers("/admin")
                 .access("hasRole('ROLE_ADMIN')");
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");

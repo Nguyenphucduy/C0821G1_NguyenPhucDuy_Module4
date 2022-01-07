@@ -12,8 +12,7 @@ import java.security.Principal;
 
 @Controller
 public class MainController {
-//    Ứng dụng chỉ cho phép người dùng đã đăng nhập được phép viết bài blog.
-//    Người dùng không đăng nhập chỉ được phép xem các bài viết.
+
     @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
     public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");

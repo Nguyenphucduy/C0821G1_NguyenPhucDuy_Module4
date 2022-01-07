@@ -6,7 +6,7 @@
 </head>
 <p style="color: blue" th:text="${messenger}"></p>
 <body>
-<form action="/customer/create" method="post" th:object="${customer}">
+<form action="/customer/admin/create" method="post" th:object="${customer}">
     <p>customerCode: </p>
     <input th:field="*{customerCode}"/>
     <p>customerName</p>

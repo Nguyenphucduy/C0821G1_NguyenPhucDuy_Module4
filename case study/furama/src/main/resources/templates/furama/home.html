@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="layout :: head">-->
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -71,12 +72,13 @@
 <div class="container-fluid">
     <div class="row header">
         <div class="col-lg-6">
-            <img src="..." height="50px" width="50px"/>
             <img src="https://i.pinimg.com/280x280_RS/8c/c7/cf/8cc7cf8460083733c6e80bcdc42aeeff.jpg" height="50px" width="50px"/>
         </div>
         <div class="col-lg-6">
-            <p class="login">
-            </p>
+            <h5 style="text-align: right">Welcome : <span th:utext="${#request.userPrincipal.name}"></span>
+                <p th:if="${userInfo != null}" th:utext="${userInfo}"></p></h5>
+
+
         </div>
     </div>
 </div>
@@ -89,7 +91,7 @@
             <a href="#">Employee</a>
         </div>
         <div class="col-lg-2 page-item">
-            <a href="/customer/list">Customer</a>
+            <a href="/customer/user/list">Customer</a>
         </div>
         <div class="col-lg-2 page-item">
             <a href="#">Service</a>
@@ -98,20 +100,14 @@
             <a href="#">Contract</a>
         </div>
         <div class="col-lg-2 page-item">
-<!--            <form method="post">-->
-<!--                <span>-->
-<!--                    <input type="hidden" name="choose" value="search">-->
-<!--                    <input type="text" name="nameProduct" placeholder="Search" style="width: 120px ">-->
-<!--                    <input class="summit" type="submit" value="Search">-->
-<!--                </span>-->
-<!--            </form>-->
+            <a href="#">User</a>
         </div>
     </div>
 </div>
 <div class="container-fluid ">
     <div class="row content">
         <div class="col-lg-6 sidebar-left">
-            <p><a href="#">link</a></p>
+            <p><a th:if="${#request.userPrincipal != null}" th:href="@{/logout}">Logout</a></p>
             <p><a href="#">link</a></p>
             <p><a href="#">link</a></p>
             <p><a href="#">link</a></p>
@@ -140,7 +136,7 @@
         </div>
     </div>
 </div>
-
+<!--<footer   th:replace="layout :: footer"></footer>-->
 <div class="container-fluid ">
     <div class="row footer">
         <div class="col-lg-12">
