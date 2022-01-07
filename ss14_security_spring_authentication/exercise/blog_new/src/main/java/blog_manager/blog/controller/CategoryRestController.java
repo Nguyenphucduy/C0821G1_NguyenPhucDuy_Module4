@@ -14,19 +14,42 @@ import java.util.Optional;
 import java.util.Set;
 
 @RestController
-@CrossOrigin(origins = "*")
 public class CategoryRestController {
+    @Autowired
+    IBlogService iBlogService;
 
     @Autowired
     ICategoryService iCategoryService;
 
+    //    Xem danh sách các bài viết
 
+    @GetMapping("/rest-blogs")
+    public ResponseEntity<List<Blog>> findAllBlog() {
+        List<Blog> blogs = iBlogService.findAll();
+        if (blogs.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(blogs, HttpStatus.OK);
+    }
+
+
+//    Xem chi tiết một bài viết
+
+
+    @GetMapping("/rest-blogs/{id}")
+    public ResponseEntity<Blog> findBlogById(@PathVariable Integer id) {
+        Optional<Blog> blog = iBlogService.getById(id);
+        if (!blog.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(blog.get(), HttpStatus.OK);
+    }
     //    Xem danh sách các category
 
 
     @GetMapping
-    public ResponseEntity<List<Category>> findAllCategory() {
-        List<Category> categories = iCategoryService.findAll();
+    public ResponseEntity<Iterable<Category>> findAllCategory() {
+        List<Category> categories = (List<Category>) iCategoryService.findAll();
         if (categories.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -61,11 +84,10 @@ public class CategoryRestController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> saveCustomer(@RequestBody Category category) {
-        iCategoryService.save(category);
+    public ResponseEntity<Category> saveCustomer(@RequestBody Category customer) {
+        iCategoryService.save(customer);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
-
 
 
     @PutMapping("/{id}")

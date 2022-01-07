@@ -10,7 +10,4 @@ import java.util.List;
 public interface IBlogRepository extends JpaRepository<Blog, Integer> {
     @Query(value = "select * from blog where topic like :topic",nativeQuery = true)
     List<Blog> getByTopic(@Param("topic") String topic);
-
-    @Query(value ="SELECT * FROM blog WHERE topic like concat('%', ?1, '%') LIMIT ?2 , 2;", nativeQuery=true)
-    List<Blog> searchByTopic(String topic, Integer offset);
 }

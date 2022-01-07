@@ -56,9 +56,4 @@ public class BlogService implements IBlogService {
     public Optional<Blog> getById(Integer id) {
         return iBlogRepository.findById(id);
     }
-
-    @Override
-    public List<Blog> searchByTopic(String topic, Integer index) {
-        return iBlogRepository.searchByTopic(topic,index);
-    }
 }

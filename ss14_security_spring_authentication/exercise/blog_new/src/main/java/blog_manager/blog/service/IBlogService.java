@@ -24,6 +24,4 @@ public interface IBlogService {
     List<Blog> findByTopic(String topic);
 
     Optional<Blog> getById(Integer id);
-
-    List<Blog> searchByTopic(String topic, Integer index);
 }
