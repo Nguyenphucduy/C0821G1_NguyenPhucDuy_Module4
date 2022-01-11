@@ -26,4 +26,6 @@ public interface ICustomerService {
     List<Customer> findCustomerUsingService();
 
     Page<Customer> findByNamePage(String nameNew,Pageable of);
+
+    void updateCustomer(CustomerDTO customerDTO);
 }

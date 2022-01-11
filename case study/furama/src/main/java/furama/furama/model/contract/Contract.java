@@ -53,6 +53,18 @@ public class Contract {
         this.serviceResort = serviceResort;
     }
 
+    public Contract(Integer contractId, String contractCode, String contractStartDate, String contractEndDate, Double contractDeposit, Double contractTotalMoney, Employee employee, Customer customer, ServiceResort serviceResort) {
+        this.contractId = contractId;
+        this.contractCode = contractCode;
+        this.contractStartDate = contractStartDate;
+        this.contractEndDate = contractEndDate;
+        this.contractDeposit = contractDeposit;
+        this.contractTotalMoney = contractTotalMoney;
+        this.employee = employee;
+        this.customer = customer;
+        this.serviceResort = serviceResort;
+    }
+
     public Integer getContractId() {
         return contractId;
     }

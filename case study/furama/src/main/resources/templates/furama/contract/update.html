@@ -7,16 +7,19 @@
 <div >
     <form th:action="@{/contract/admin/update}" th:object="${contract}"
           method="post"  >
-        <input type="hidden" th:field="*{contractId}" th:text="*{contractId}"/>
-        <p>contractCode: </p>
-        <input th:field="*{contractCode}" th:text="*{contractId}"/>
+        <input type="hidden" th:field="*{contractId}" />
+        <input type="hidden" th:field="*{contractCode}" />
         <p>contractStartDate</p>
+        <p style="color: red" th:if="${#fields.hasErrors('contractStartDate')}" th:errors="*{contractStartDate}"></p>
         <input type="date" th:field="*{contractStartDate}" th:text="*{contractStartDate}"/>
         <p>contractEndDate: </p>
+        <p style="color: red" th:if="${#fields.hasErrors('contractEndDate')}" th:errors="*{contractEndDate}"></p>
         <input type="date" th:field="*{contractEndDate}" th:text="*{contractEndDate}"/>
         <p>contractDeposit</p>
+        <p style="color: red" th:if="${#fields.hasErrors('contractDeposit')}" th:errors="*{contractDeposit}"></p>
         <input  th:field="*{contractDeposit}" th:text="*{contractDeposit}"/>
         <p>contractTotalMoney: </p>
+        <p style="color: red" th:if="${#fields.hasErrors('contractTotalMoney')}" th:errors="*{contractTotalMoney}"></p>
         <input th:field="*{contractTotalMoney}" th:text="*{contractTotalMoney}"/>
         <select th:field="*{employee}">
             <option th:each="employee : ${employees}" th:value="${employee.employeeId}" th:text="${employee.name}"></option>

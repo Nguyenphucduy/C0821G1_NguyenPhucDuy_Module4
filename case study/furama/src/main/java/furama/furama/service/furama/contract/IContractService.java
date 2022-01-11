@@ -20,6 +20,8 @@ public interface IContractService {
 
     void saveContractDTO(ContractDTO contractDTO);
 
+    void updateContractDTO(ContractDTO contractDTO);
+
 //    List<Contract> findByStartDate(String name);
 
 }

@@ -4,13 +4,12 @@ import furama.furama.model.customer.CustomerType;
 import furama.furama.utils.CodeConstraint;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-public class CustomerDTO implements Validator {
+public class CustomerUpdateDTO implements Validator {
     private Integer customerId;
-//    @CodeConstraint()
+//    @CodeConstraint
     @Pattern(regexp = "^KH\\d{4}$", message = "Tên bắt đầu KH  và  phải có 4 số")
     @NotBlank(message = "mã khách hàng không được để trống (NotBlank)")
     private String customerCode;
@@ -41,13 +40,6 @@ public class CustomerDTO implements Validator {
     @NotBlank(message = " không được để trống (NotBlank)")
     private String gender;
 
-    public Integer getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(Integer customerId) {
-        this.customerId = customerId;
-    }
 
     private CustomerType customerType;
 
@@ -67,9 +59,16 @@ public class CustomerDTO implements Validator {
         this.gender = gender;
     }
 
-    public CustomerDTO() {
+    public CustomerUpdateDTO() {
     }
 
+    public Integer getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Integer customerId) {
+        this.customerId = customerId;
+    }
 
     public String getCustomerCode() {
         return customerCode;
@@ -134,8 +133,8 @@ public class CustomerDTO implements Validator {
 
     @Override
     public void validate(Object target, Errors errors) {
-        CustomerDTO customerDTO = (CustomerDTO) target; //Ép kiểu ngầm định
-        String dateOfBirth = customerDTO.dateOfBirth;
+        CustomerUpdateDTO customerUpdateDTO = (CustomerUpdateDTO) target; //Ép kiểu ngầm định
+        String dateOfBirth = customerUpdateDTO.dateOfBirth;
         String today = String.valueOf(java.time.LocalDate.now());
 
         String[] string1 = dateOfBirth.split("-");

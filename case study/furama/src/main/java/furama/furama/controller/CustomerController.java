@@ -79,8 +79,13 @@ public class CustomerController {
         return "/furama/customer/update";
     }
     @PostMapping("/admin/update")
-    public String updateCustomer(@ModelAttribute("customer") Customer customer,  RedirectAttributes redirectAttributes){
-        iCustomerService.save(customer);
+    public String updateCustomer(@Valid @ModelAttribute("customer") CustomerDTO customerDTO,BindingResult bindingResult,Model model,  RedirectAttributes redirectAttributes){
+        new CustomerDTO().validate(customerDTO,bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("customerTypes",iCustomerTypeService.findAll());
+            return "furama/customer/update";
+        }
+        iCustomerService.updateCustomer(customerDTO);
         redirectAttributes.addFlashAttribute("messenger","update done");
         return "redirect:/customer/user/list";
     }

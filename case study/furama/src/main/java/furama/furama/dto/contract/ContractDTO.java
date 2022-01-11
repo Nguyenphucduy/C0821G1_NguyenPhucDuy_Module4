@@ -11,7 +11,8 @@ import javax.validation.constraints.Positive;
 
 
 public class ContractDTO {
-    @CodeConstraint()
+    private Integer contractId;
+//    @CodeConstraint()
     @Pattern(regexp = "^HD\\d{4}$", message = "mã hợp đồng HD  và  phải có 4 số")
     @NotBlank(message = "mã hợp đồng không được để trống (NotBlank)")
     private String contractCode;
@@ -39,16 +40,12 @@ public class ContractDTO {
     public ContractDTO() {
     }
 
+    public Integer getContractId() {
+        return contractId;
+    }
 
-    public ContractDTO(String contractCode, String contractStartDate, String contractEndDate, Double contractDeposit, Double contractTotalMoney, Employee employee, Customer customer, ServiceResort serviceResort) {
-        this.contractCode = contractCode;
-        this.contractStartDate = contractStartDate;
-        this.contractEndDate = contractEndDate;
-        this.contractDeposit = contractDeposit;
-        this.contractTotalMoney = contractTotalMoney;
-        this.employee = employee;
-        this.customer = customer;
-        this.serviceResort = serviceResort;
+    public void setContractId(Integer contractId) {
+        this.contractId = contractId;
     }
 
     public String getContractCode() {

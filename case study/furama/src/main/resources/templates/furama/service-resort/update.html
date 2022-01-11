@@ -8,19 +8,23 @@
     <form th:action="@{/service-resort/admin/update}" th:object="${serviceResort}"
           method="post"  >
         <input type="hidden" th:field="*{serviceResortId}"/>
-        <p>codeServiceResort: </p>
-        <input th:field="*{codeServiceResort}" th:text="*{codeServiceResort}"/>
+        <input type="hidden" th:field="*{codeServiceResort}"/>
         <p>usableArea</p>
+        <p style="color: red" th:if="${#fields.hasErrors('usableArea')}" th:errors="*{usableArea}"></p>
         <input  th:field="*{usableArea}" th:text="*{usableArea}"/>
         <p>numberOfPeople: </p>
+        <p style="color: red" th:if="${#fields.hasErrors('numberOfPeople')}" th:errors="*{numberOfPeople}"></p>
         <input  th:field="*{numberOfPeople}" th:text="*{numberOfPeople}"/>
-        <p>standardRoomr</p>
+        <p>standardRoom</p>
+        <p style="color: red" th:if="${#fields.hasErrors('standardRoom')}" th:errors="*{standardRoom}"></p>
         <input  th:field="*{standardRoom}" th:text="*{standardRoom}"/>
         <p>descriptionOtherConvenience: </p>
         <input th:field="*{descriptionOtherConvenience}" th:text="*{descriptionOtherConvenience}"/>
         <p>poolArea</p>
+        <p style="color: red" th:if="${#fields.hasErrors('poolArea')}" th:errors="*{poolArea}"></p>
         <input  th:field="*{poolArea}" th:text="*{poolArea}"/>
         <p>numberOfFloors: </p>
+        <p style="color: red" th:if="${#fields.hasErrors('numberOfFloors')}" th:errors="*{numberOfFloors}"></p>
         <input th:field="*{numberOfFloors}" th:text="*{numberOfFloors}"/>
         <select th:field="*{serviceType}">
             <option th:each="serviceType : ${serviceTypes}" th:value="${serviceType.serviceTypeId}" th:text="${serviceType.serviceTypeName}"></option>

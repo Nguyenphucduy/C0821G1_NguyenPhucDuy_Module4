@@ -57,6 +57,18 @@ public class Employee extends Person {
         this.division = division;
         this.appUser = appUser;
     }
+
+    public Employee(String name, String dateOfBirth, String gender, String cardId, String phoneNumber, String email, String address, Integer employeeId, String employeeCode, Double employeeSalary, Position position, EducationDegree educationDegree, Division division, AppUser appUser) {
+        super(name, dateOfBirth, gender, cardId, phoneNumber, email, address);
+        this.employeeId = employeeId;
+        this.employeeCode = employeeCode;
+        this.employeeSalary = employeeSalary;
+        this.position = position;
+        this.educationDegree = educationDegree;
+        this.division = division;
+        this.appUser = appUser;
+    }
+
     public AppUser getAppUser() {
         return appUser;
     }

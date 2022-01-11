@@ -61,4 +61,10 @@ public class CustomerService implements ICustomerService {
     public Page<Customer> findByNamePage(String nameNew,Pageable of) {
         return iCustomerRepository.findByNamePage(nameNew,of);
     }
+
+    @Override
+    public void updateCustomer(CustomerDTO customerDTO) {
+        Customer customer = new Customer(customerDTO.getName(),customerDTO.getDateOfBirth(),customerDTO.getGender(),customerDTO.getCardId(),customerDTO.getPhoneNumber(),customerDTO.getEmail(),customerDTO.getAddress(),customerDTO.getCustomerId(),customerDTO.getCustomerCode(),customerDTO.getCustomerType());
+        iCustomerRepository.save(customer);
+    }
 }

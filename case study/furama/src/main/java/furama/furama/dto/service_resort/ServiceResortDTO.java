@@ -10,7 +10,8 @@ import javax.validation.constraints.Positive;
 
 
 public class ServiceResortDTO {
-    @CodeConstraint()
+    private Integer serviceResortId;
+//    @CodeConstraint()
     @Pattern(regexp = "^DV\\d{4}$", message = "Tên bắt đầu KH|DV|HD|NV  và  phải có 4 số")
     @NotBlank(message = "mã Dịch vụ không được để trống (NotBlank)")
     private String codeServiceResort;
@@ -35,6 +36,14 @@ public class ServiceResortDTO {
     private RentType rentType;
 
     public ServiceResortDTO() {
+    }
+
+    public Integer getServiceResortId() {
+        return serviceResortId;
+    }
+
+    public void setServiceResortId(Integer serviceResortId) {
+        this.serviceResortId = serviceResortId;
     }
 
     public ServiceResortDTO(@Pattern(regexp = "^(KH|DV|HD|NV)\\d{4}$", message = "Tên bắt đầu KH|DV|HD|NV  và  phải có 4 số") @NotBlank(message = "mã Dịch vụ không được để trống (NotBlank)") String codeServiceResort, @Positive(message = "usableArea phải lớn hơn 0") @NotBlank(message = "không được để trống (NotBlank)") Double usableArea, @Positive(message = "numberOfPeople phải lớn hơn 0") @NotBlank(message = "không được để trống (NotBlank)") Integer numberOfPeople, @Positive(message = "standardRoom phải lớn hơn 0") @NotBlank(message = "không được để trống (NotBlank)") String standardRoom, @Positive(message = "poolArea phải lớn hơn 0") @NotBlank(message = "không được để trống (NotBlank)") Double poolArea, @Positive(message = "numberOfFloors phải lớn hơn 0") @NotBlank(message = "không được để trống (NotBlank)") Integer numberOfFloors, String descriptionOtherConvenience, ServiceType serviceType, RentType rentType) {

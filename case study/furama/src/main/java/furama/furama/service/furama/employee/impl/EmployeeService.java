@@ -96,4 +96,10 @@ public class EmployeeService implements IEmployeeService {
     public Page<Employee> findByNamePage(String nameNew, Pageable pageable) {
         return iEmployeeRepository.findByNamePage(nameNew,pageable);
     }
+
+    @Override
+    public void updateEmployeeDTO(EmployeeDTO employeeDTO) {
+        Employee employee = new Employee(employeeDTO.getName(),employeeDTO.getDateOfBirth(),employeeDTO.getGender(),employeeDTO.getCardId(),employeeDTO.getPhoneNumber(),employeeDTO.getEmail(),employeeDTO.getAddress(),employeeDTO.getEmployeeId(),employeeDTO.getEmployeeCode(),employeeDTO.getEmployeeSalary(),employeeDTO.getPosition(),employeeDTO.getEducationDegree(),employeeDTO.getDivision(),employeeDTO.getAppUser());
+        iEmployeeRepository.save(employee);
+    }
 }

@@ -58,4 +58,10 @@ public class ServiceResortService implements IServiceResortService {
     public Page<ServiceResort> findByNamePage(String nameNew, Pageable pageable) {
         return iServiceResortRepository.findByNamePage(nameNew,pageable);
     }
+
+    @Override
+    public void updateServiceResortDTO(ServiceResortDTO serviceResortDTO) {
+        ServiceResort serviceResort = new ServiceResort(serviceResortDTO.getServiceResortId(),serviceResortDTO.getCodeServiceResort(),serviceResortDTO.getUsableArea(),serviceResortDTO.getNumberOfPeople(),serviceResortDTO.getStandardRoom(),serviceResortDTO.getDescriptionOtherConvenience(),serviceResortDTO.getPoolArea(),serviceResortDTO.getNumberOfFloors(),serviceResortDTO.getServiceType(),serviceResortDTO.getRentType());
+        iServiceResortRepository.save(serviceResort);
+    }
 }

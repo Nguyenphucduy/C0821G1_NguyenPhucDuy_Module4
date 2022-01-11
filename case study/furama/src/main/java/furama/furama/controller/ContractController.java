@@ -97,8 +97,14 @@ public class ContractController {
     }
 
     @PostMapping("/admin/update")
-    public String updateCustomer(@ModelAttribute("contract") Contract contract, RedirectAttributes redirectAttributes) {
-        iContractService.save(contract);
+    public String updateCustomer(@Valid @ModelAttribute("contract") ContractDTO contractDTO,BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("employees", iEmployeeService.findAll());
+            model.addAttribute("customers", iCustomerService.findAll());
+            model.addAttribute("serviceResorts", iServiceResortService.findAll());
+            return "furama/contract/update";
+        }
+        iContractService.updateContractDTO(contractDTO);
         redirectAttributes.addFlashAttribute("messenger", "update done");
         return "redirect:/contract/user/list";
     }

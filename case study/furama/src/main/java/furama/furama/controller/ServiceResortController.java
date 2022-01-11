@@ -69,8 +69,13 @@ public class ServiceResortController {
     }
 
     @PostMapping("/admin/update")
-    public String updateCustomer(@ModelAttribute("serviceResort") ServiceResort serviceResort, RedirectAttributes redirectAttributes) {
-        iServiceResortService.save(serviceResort);
+    public String updateCustomer(@Valid @ModelAttribute("serviceResort") ServiceResortDTO serviceResortDTO,BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("rentTypes", iRentTypeService.findAll());
+            model.addAttribute("serviceTypes", iServiceTypeService.findAll());
+            return "furama/service-resort/update";
+        }
+        iServiceResortService.updateServiceResortDTO(serviceResortDTO);
         redirectAttributes.addFlashAttribute("messenger", "update done");
         return "redirect:/service-resort/user/list";
     }

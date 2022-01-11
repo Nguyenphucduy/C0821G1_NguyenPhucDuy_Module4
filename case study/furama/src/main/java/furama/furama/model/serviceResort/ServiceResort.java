@@ -54,6 +54,19 @@ public  class ServiceResort {
         this.rentType = rentType;
     }
 
+    public ServiceResort(Integer serviceResortId, String codeServiceResort, Double usableArea, Integer numberOfPeople, String standardRoom, String descriptionOtherConvenience, Double poolArea, Integer numberOfFloors, ServiceType serviceType, RentType rentType) {
+        this.serviceResortId = serviceResortId;
+        this.codeServiceResort = codeServiceResort;
+        this.usableArea = usableArea;
+        this.numberOfPeople = numberOfPeople;
+        this.standardRoom = standardRoom;
+        this.descriptionOtherConvenience = descriptionOtherConvenience;
+        this.poolArea = poolArea;
+        this.numberOfFloors = numberOfFloors;
+        this.serviceType = serviceType;
+        this.rentType = rentType;
+    }
+
     public Integer getServiceResortId() {
         return serviceResortId;
     }

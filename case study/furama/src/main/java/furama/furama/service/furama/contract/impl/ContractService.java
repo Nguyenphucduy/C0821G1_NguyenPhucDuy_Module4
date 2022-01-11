@@ -68,6 +68,12 @@ public class ContractService implements IContractService {
         iContractDetailRepository.save(contractDetail);
     }
 
+    @Override
+    public void updateContractDTO(ContractDTO contractDTO) {
+        Contract contract = new Contract(contractDTO.getContractId(),contractDTO.getContractCode(),contractDTO.getContractStartDate(),contractDTO.getContractEndDate(),contractDTO.getContractDeposit(),contractDTO.getContractTotalMoney(),contractDTO.getEmployee(),contractDTO.getCustomer(),contractDTO.getServiceResort());
+        iContractRepository.save(contract);
+    }
+
 //    @Override
 //    public List<Contract> findByStartDate(String starDate) {
 //        return iContractRepository.findByStarDate(starDate);

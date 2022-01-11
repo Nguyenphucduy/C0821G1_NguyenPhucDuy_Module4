@@ -23,4 +23,6 @@ public interface IServiceResortService {
     void saveServiceResortDTO(ServiceResortDTO serviceResortDTO);
 
     Page<ServiceResort> findByNamePage(String nameNew, Pageable pageable);
+
+    void updateServiceResortDTO(ServiceResortDTO serviceResortDTO);
 }

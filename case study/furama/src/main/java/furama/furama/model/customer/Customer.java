@@ -44,6 +44,13 @@ public class Customer extends Person {
         this.customerType = customerType;
     }
 
+    public Customer(String name, String dateOfBirth, String gender, String cardId, String phoneNumber, String email, String address, Integer customerId, String customerCode, CustomerType customerType) {
+        super(name, dateOfBirth, gender, cardId, phoneNumber, email, address);
+        this.customerId = customerId;
+        this.customerCode = customerCode;
+        this.customerType = customerType;
+    }
+
     public Integer getCustomerId() {
         return customerId;
     }

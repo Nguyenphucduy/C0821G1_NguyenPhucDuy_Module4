@@ -10,7 +10,8 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Positive;
 
 public class EmployeeDTO {
-    @CodeConstraint()
+    private Integer employeeId;
+//    @CodeConstraint()
     @Pattern(regexp = "^NV\\d{4}$", message = "Tên bắt đầu NV  và  phải có 4 số")
     @NotBlank(message = "mã nhân viên không được để trống (NotBlank)")
     private String employeeCode;
@@ -35,7 +36,7 @@ public class EmployeeDTO {
     private String email;
 
     @NotBlank(message = "không được để trống (NotBlank)")
-    @Pattern(regexp = "^[A-z ]{9,100}$", message = "địa chỉ không được phép quá 100 kí tự")
+    @Pattern(regexp = "^[A-z ]{6,100}$", message = "địa chỉ không được phép quá 100 kí tự")
     private String address;
     @Positive(message = "lương phải lớn hơn 0")
     private Double employeeSalary;
@@ -56,6 +57,13 @@ public class EmployeeDTO {
     public EmployeeDTO() {
     }
 
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
 
     public String getEmployeeCode() {
         return employeeCode;

@@ -112,8 +112,14 @@ public class EmployeeController {
         return "/furama/employee/update";
     }
     @PostMapping("/admin/update")
-    public String updateCustomer(@ModelAttribute("employee") Employee employee,  RedirectAttributes redirectAttributes){
-        iEmployeeService.save(employee);
+    public String updateCustomer(@Valid @ModelAttribute("employee") EmployeeDTO employeeDTO, BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes){
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("divisions",iDivisionService.findAll());
+            model.addAttribute("positions",iPositionService.findAll());
+            model.addAttribute("educationDegrees",iEducationDegreeService.findAll());
+            return "furama/employee/update";
+        }
+        iEmployeeService.updateEmployeeDTO(employeeDTO);
         redirectAttributes.addFlashAttribute("messenger","update done");
         return "redirect:/employee/user/list";
     }

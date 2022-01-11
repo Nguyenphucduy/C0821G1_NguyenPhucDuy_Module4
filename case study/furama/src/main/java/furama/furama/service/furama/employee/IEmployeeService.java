@@ -23,4 +23,6 @@ public interface IEmployeeService {
     void saveEmployeeDTO(EmployeeDTO employeeDTO);
 
     Page<Employee> findByNamePage(String nameNew, Pageable pageable);
+
+    void updateEmployeeDTO(EmployeeDTO employeeDTO);
 }
