@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/furama/layout :: head"></div>
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<h1>Update Employee</h1>
+<div >
+    <form th:action="@{/employee/admin/update}" th:object="${employee}"
+          method="post"  >
+        <input type="hidden" th:field="*{employeeId}"/>
+        <input type="hidden" th:field="*{appUser}"/>
+        <p>employeeCode: </p>
+        <input th:field="*{employeeCode}" th:text="*{employeeCode}"/>
+        <p>Name</p>
+        <input  th:field="*{name}" th:text="*{name}"/>
+        <p>DateOfBirth: </p>
+        <input type="date" th:field="*{dateOfBirth}" th:text="*{dateOfBirth}"/>
+        <p>Gender</p>
+        <input  th:field="*{gender}" th:text="*{gender}"/>
+        <p>CardId: </p>
+        <input th:field="*{cardId}" th:text="*{cardId}"/>
+        <p>PhoneNumber</p>
+        <input  th:field="*{phoneNumber}" th:text="*{phoneNumber}"/>
+        <p>Email: </p>
+        <input th:field="*{email}" th:text="*{email}"/>
+        <p>Address</p>
+        <input  th:field="*{address}" th:text="*{address}"/>
+        <p>Salary</p>
+        <input  th:field="*{employeeSalary}" th:text="*{employeeSalary}"/>
+        <select th:field="*{position}">
+            <option th:each="position : ${positions}" th:value="${position.positionId}" th:text="${position.positionName}"></option>
+        </select>
+
+        <select th:field="*{educationDegree}">
+            <option th:each="educationDegree : ${educationDegrees}" th:value="${educationDegree.educationDegreeId}" th:text="${educationDegree.educationDegreeName}"></option>
+        </select>
+
+        <select th:field="*{division}">
+            <option th:each="division : ${divisions}" th:value="${division.divisionId}" th:text="${division.divisionName}"></option>
+        </select>
+        <input type="submit" value="Update">
+    </form>
+</div>
+<div th:replace="/furama/layout :: menu"></div>
+</body>
+</html>

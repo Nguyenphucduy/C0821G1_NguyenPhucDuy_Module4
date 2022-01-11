@@ -1,12 +1,11 @@
 package furama.furama.model.employee;
 
 
+import furama.furama.model.contract.Contract;
 import furama.furama.model.person.Person;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Employee extends Person {
@@ -15,36 +14,56 @@ public class Employee extends Person {
     private Integer employeeId;
     private String employeeCode;
     private Double employeeSalary;
-    private Integer position;
-    private Integer educationDegree;
-    private Integer division;
-    private String userName;
+
+    @ManyToOne
+    @JoinColumn()
+    private Position position;
+
+    @ManyToOne
+    @JoinColumn()
+    private EducationDegree educationDegree;
+
+    @ManyToOne
+    @JoinColumn()
+    private Division division;
+
+    @OneToMany(mappedBy = "employee", cascade = CascadeType.REMOVE)
+    private List<Contract> contracts;
+
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
+    }
+
+    @OneToOne
+    @JoinColumn()
+    private AppUser appUser;
+
+
 
     public Employee() {
 
     }
 
-    public Employee(Integer employeeId, String employeeCode, Double employeeSalary, Integer position, Integer educationDegree, Integer division, String userName) {
-        this.employeeId = employeeId;
-        this.employeeCode = employeeCode;
-        this.employeeSalary = employeeSalary;
-        this.position = position;
-        this.educationDegree = educationDegree;
-        this.division = division;
-        this.userName = userName;
-    }
-
-    public Employee(String name, String dateOfBirth, String gender, String cardId, String phoneNumber, String email, String address, Integer employeeId, String employeeCode, Double employeeSalary, Integer position, Integer educationDegree, Integer division, String userName) {
+    public Employee(String name, String dateOfBirth, String gender, String cardId, String phoneNumber, String email, String address, String employeeCode, Double employeeSalary, Position position, EducationDegree educationDegree, Division division, AppUser appUser) {
         super(name, dateOfBirth, gender, cardId, phoneNumber, email, address);
-        this.employeeId = employeeId;
         this.employeeCode = employeeCode;
         this.employeeSalary = employeeSalary;
         this.position = position;
         this.educationDegree = educationDegree;
         this.division = division;
-        this.userName = userName;
+        this.appUser = appUser;
+    }
+    public AppUser getAppUser() {
+        return appUser;
     }
 
+    public void setAppUser(AppUser appUser) {
+        this.appUser = appUser;
+    }
     public Integer getEmployeeId() {
         return employeeId;
     }
@@ -69,35 +88,29 @@ public class Employee extends Person {
         this.employeeSalary = employeeSalary;
     }
 
-    public Integer getPosition() {
+    public Position getPosition() {
         return position;
     }
 
-    public void setPosition(Integer position) {
+    public void setPosition(Position position) {
         this.position = position;
     }
 
-    public Integer getEducationDegree() {
+    public EducationDegree getEducationDegree() {
         return educationDegree;
     }
 
-    public void setEducationDegree(Integer educationDegree) {
+    public void setEducationDegree(EducationDegree educationDegree) {
         this.educationDegree = educationDegree;
     }
 
-    public Integer getDivision() {
+    public Division getDivision() {
         return division;
     }
 
-    public void setDivision(Integer division) {
+    public void setDivision(Division division) {
         this.division = division;
     }
 
-    public String getUserName() {
-        return userName;
-    }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
 }

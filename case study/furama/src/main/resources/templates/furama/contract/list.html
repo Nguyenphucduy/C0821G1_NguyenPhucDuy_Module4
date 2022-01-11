@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>contract List</title>
+    <div th:replace="/furama/layout :: head"></div>
+</head>
+
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<p><a href="/contract/admin/create-page">Create contract</a></p>
+
+
+<p style="color: blue" th:text="${messenger}"></p>
+
+<h1>contract List</h1>
+<table border="1">
+    <tr>
+        <th>Index</th>
+        <th>contractCode</th>
+        <th>contractStartDate</th>
+        <th>contractEndDate</th>
+        <th>contractDeposit</th>
+        <th>contractTotalMoney</th>
+        <th>employee</th>
+        <th>customer</th>
+        <th>serviceResort</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>View</th>
+
+    </tr>
+    <tr th:each="contract,iterStar : ${contracts}">
+        <td th:text="${iterStar.index}"></td>
+        <td th:text="${contract.contractCode}"></td>
+        <td th:text="${contract.contractStartDate}"></td>
+        <td th:text="${contract.contractEndDate}"></td>
+        <td th:text="${contract.contractDeposit}"></td>
+        <td th:text="${contract.contractTotalMoney}"></td>
+        <td th:text="${contract.employee.name}"></td>
+        <td th:text="${contract.customer.name}"></td>
+        <td th:text="${contract.serviceResort.serviceType.serviceTypeName}"></td>
+        <td><a th:href="@{/contract/admin/{id}/update(id=${contract.contractId})}">update</a></td>
+        <td><a th:href="@{/contract/admin/{id}/delete(id=${contract.contractId})}" onclick="return confirm('Are you sure you want to delete this item?')">delete</a></td>
+        <td><a th:href="@{/contract/user/{id}/view(id=${contract.contractId})}">view</a></td>
+    </tr>
+</table>
+<span>
+    <a th:if="${contracts.hasPrevious()}" th:href="@{/contract/user/list(page = ${contracts.number - 1})}">
+        Previous
+    </a>
+     <a th:if="${contracts.hasNext()}" th:href="@{/contract/user/list(page = ${contracts.number + 1})}">
+        Next
+    </a>
+    <p>
+        <span th:each="pageNo: ${#numbers.sequence(0,contracts.totalPages - 1)}">
+            <a th:href="@{/contract/user/list(page = ${pageNo})}" th:text="${pageNo}"></a>
+        </span>
+    </p>
+</span>
+<div th:replace="/furama/layout :: footer"></div>
+</body>
+</html>

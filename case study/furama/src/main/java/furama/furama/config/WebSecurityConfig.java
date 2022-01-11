@@ -1,6 +1,6 @@
 package furama.furama.config;
 
-import furama.furama.service.furama.impl.UserDetailsServiceImpl;
+import furama.furama.service.furama.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,12 +35,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/", "/login", "/logout").permitAll();
 // Các trang cả user và admin đều truy cập đc
         http.authorizeRequests()
-                .antMatchers("/userInfo", "/customer/user/**")
+                .antMatchers( "/customer/user/**","/employee/user/**","/service-resort/user/**","/contract/user/**")
                 .access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')");
 // Các trang chỉ admin đều truy cập đc
         http.authorizeRequests()
-                //                .antMatchers("/admin/**", "/user/**") cách phân quyền nhanh
-                .antMatchers("/admin", "/customer/admin/**")
+                .antMatchers("/admin", "/customer/admin/**","/employee/admin/**","/service-resort/admin/**","/contract/admin/**")
                 .access("hasRole('ROLE_ADMIN')");
 
         http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
@@ -50,7 +49,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Submit URL của trang login
                 .loginProcessingUrl("/j_spring_security") // Submit URL
                 .loginPage("/login")//
-                .defaultSuccessUrl("/userInfo")// đăng nhập thành công -> call 1 request /userInfo
+                .defaultSuccessUrl("/home")// đăng nhập thành công -> call 1 request /userInfo
                 .failureUrl("/login?error=true")// đăng nhập thất bại -> /login?error = true
                 .usernameParameter("username")//
                 .passwordParameter("password")

@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class AppUser {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_Id", nullable = false)
     private Long userId;
 
@@ -21,6 +21,17 @@ public class AppUser {
 
     @Column(name = "enabled", length = 10, nullable = false)
     private String enabled;
+
+    @OneToOne(mappedBy = "appUser", cascade = CascadeType.REMOVE)
+    private Employee employee;
+
+    public Employee getEmployees() {
+        return employee;
+    }
+
+    public void setEmployees(Employee employees) {
+        this.employee = employees;
+    }
 
     public Long getUserId() {
         return userId;
@@ -53,5 +64,6 @@ public class AppUser {
     public void setEnabled(String enabled) {
         this.enabled = enabled;
     }
+
 
 }

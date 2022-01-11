@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/furama/layout :: head"></div>
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<h1>View Employee</h1>
+<table border="1">
+    <tr>
+        <th>Employee Code</th>
+        <th>Name</th>
+        <th>DateOfBirth</th>
+        <th>Gender</th>
+        <th>CardId</th>
+        <th>PhoneNumber</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>employeeSalary</th>
+        <th>position</th>
+        <th>educationDegree</th>
+        <th>division</th>
+<!--        <th>appUser</th>-->
+        <th>Update</th>
+        <th>Delete</th>
+        <th>View</th>
+
+    </tr>
+    <tr>
+        <td th:text="${employee.employeeCode}"></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.dateOfBirth}"></td>
+        <td th:text="${employee.gender}"></td>
+        <td th:text="${employee.cardId}"></td>
+        <td th:text="${employee.phoneNumber}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.address}"></td>
+        <td th:text="${employee.employeeSalary}"></td>
+        <td th:text="${employee.position.positionName}"></td>
+        <td th:text="${employee.educationDegree.educationDegreeName}"></td>
+        <td th:text="${employee.division.divisionName}"></td>
+<!--        <td th:text="${employee.appUser.userName}"></td>-->
+        <td><a th:href="@{/employee/admin/{id}/update(id=${employee.employeeId})}">update</a></td>
+        <td><a th:href="@{/employee/admin/{id}/delete(id=${employee.employeeId})}">delete</a></td>
+        <td><a th:href="@{/employee/user/{id}/view(id=${employee.employeeId})}">view</a></td>
+    </tr>
+</table>
+<div th:replace="/furama/layout :: footer"></div>
+</body>
+</html>

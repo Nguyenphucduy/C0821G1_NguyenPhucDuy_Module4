@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/furama/layout :: head"></div>
 <body>
+<div th:replace="/furama/layout :: menu"></div>
 <h1>View Customer</h1>
 <table border="1">
     <tr>
@@ -31,6 +33,6 @@
         <td><a th:href="@{/customer/{id}/delete(id=${customer.customerId})}">delete</a></td>
     </tr>
 </table>
-
+<div th:replace="/furama/layout :: menu"></div>
 </body>
 </html>

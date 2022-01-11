@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/furama/layout :: head"></div>
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<h1>View serviceResort</h1>
+<table border="1">
+    <tr>
+        <th>codeServiceResort</th>
+        <th>usableArea</th>
+        <th>rentCost</th>
+        <th>numberOfPeople</th>
+        <th>standardRoom</th>
+        <th>descriptionOtherConvenience</th>
+        <th>poolArea</th>
+        <th>numberOfFloors</th>
+        <th>serviceType</th>
+        <th>rentType</th>
+
+    </tr>
+        <td th:text="${serviceResort.codeServiceResort}"></td>
+        <td th:text="${serviceResort.usableArea}"></td>
+        <td th:text="${serviceResort.rentType.rentTypeCost}"></td>
+        <td th:text="${serviceResort.numberOfPeople}"></td>
+        <td th:text="${serviceResort.standardRoom}"></td>
+        <td th:text="${serviceResort.descriptionOtherConvenience}"></td>
+        <td th:text="${serviceResort.poolArea}"></td>
+        <td th:text="${serviceResort.numberOfFloors}"></td>
+        <td th:text="${serviceResort.serviceType.serviceTypeName}"></td>
+        <td th:text="${serviceResort.rentType.rentTypeName}"></td>
+    </tr>
+</table>
+<div th:replace="/furama/layout :: footer"></div>
+</body>
+</html>

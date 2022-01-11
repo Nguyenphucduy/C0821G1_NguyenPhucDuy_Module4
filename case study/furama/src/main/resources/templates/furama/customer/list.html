@@ -1,59 +1,84 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Customer List</title>
-</head>
-
+<div th:replace="/furama/layout :: head"></div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 <body>
 
-<p><a href="/customer/admin/create-page">Create Customer</a></p>
+<div th:replace="/furama/layout :: menu"></div>
 
 
-<form action="/customer/user/search" method="post">
-    <label>Name Customer:
-        <input type="text" name="name">
-    </label>
-    <button type="submit">Search</button>
-</form>
+<div class="menu">
+    <center>
+        <div class="sidebar1">
+            <a href="/customer/admin/create-page" class="button1"> <span class="btn1">Create </span></a>
+        </div>
+        <div class="sidebar2">
+            <a href="/customer/user/customer-using-service" class="button1"> <span class="btn1">List Customer Using Service </span></a>
+        </div>
+        <div class="sidebar3">
+            <form action="/customer/user/search" method="post">
+                <input type="text" name="name" placeholder="Name Customer">
+                <input type="submit" value="Search"/>
+            </form>
+        </div>
+        <div class="sidebar4">
+            <form action="" method="get">
+                <select name="lang">
+                    <option value="vi">Vietnamese</option>
+                    <option value="en">English</option>
+                    <option value="ja">Japanese</option>
+                </select>
+                <input type="submit" value="Change"/>
+            </form>
+        </div>
+        <div class="sidebar5">
+        </div>
+    </center>
+</div>
 
 
-<p style="color: blue" th:text="${messenger}"></p>
+<p style="color: blue" th:text="${messenger}" class="title"></p>
 
-<h1>Customer List</h1>
-<table border="1">
-    <tr>
-        <th>Index</th>
-        <th>Customer Code</th>
-        <th>customerName</th>
-        <th>customerDateOfBirth</th>
-        <th>customerGender</th>
-        <th>customerCardId</th>
-        <th>customerPhoneNumber</th>
-        <th>customerEmail</th>
-        <th>customerAddress</th>
-        <th>customerType</th>
-        <th>Update</th>
-        <th>Delete</th>
-        <th>View</th>
+<h1 th:text="#{list.title}" class="title">Customer List</h1>
+<div>
+    <table border="1">
+        <tr>
+            <th>Index</th>
+            <th>Customer Code</th>
+            <th>customerName</th>
+            <th>customerDateOfBirth</th>
+            <th>customerGender</th>
+            <th>customerCardId</th>
+            <th>customerPhoneNumber</th>
+            <th>customerEmail</th>
+            <th>customerAddress</th>
+            <th>customerType</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>View</th>
 
-    </tr>
-    <tr th:each="customer,iterStar : ${customers}">
-        <td th:text="${iterStar.index}"></td>
-        <td th:text="${customer.customerCode}"></td>
-        <td th:text="${customer.name}"></td>
-        <td th:text="${customer.dateOfBirth}"></td>
-        <td th:text="${customer.gender}"></td>
-        <td th:text="${customer.cardId}"></td>
-        <td th:text="${customer.phoneNumber}"></td>
-        <td th:text="${customer.email}"></td>
-        <td th:text="${customer.address}"></td>
-        <td th:text="${customer.customerType.customerTypeName}"></td>
-        <td><a th:href="@{/customer/admin/{id}/update(id=${customer.customerId})}">update</a></td>
-        <td><a th:href="@{/customer/admin/{id}/delete(id=${customer.customerId})}">delete</a></td>
-        <td><a th:href="@{/customer/user/{id}/view(id=${customer.customerId})}">view</a></td>
-    </tr>
-</table>
-<span>
+        </tr>
+        <tr th:each="customer,iterStar : ${customers}">
+            <td th:text="${iterStar.index}"></td>
+            <td th:text="${customer.customerCode}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.dateOfBirth}"></td>
+            <td th:text="${customer.gender}"></td>
+            <td th:text="${customer.cardId}"></td>
+            <td th:text="${customer.phoneNumber}"></td>
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.address}"></td>
+            <td th:text="${customer.customerType.customerTypeName}"></td>
+            <td><a th:href="@{/customer/admin/{id}/update(id=${customer.customerId})}">update</a></td>
+
+
+            <td><a th:href="@{/customer/admin/{id}/delete(id=${customer.customerId})}">delete</a></td>
+
+
+            <td><a th:href="@{/customer/user/{id}/view(id=${customer.customerId})}">view</a></td>
+        </tr>
+    </table>
+    <span>
     <a th:if="${customers.hasPrevious()}" th:href="@{/customer/user/list(page = ${customers.number - 1})}">
         Previous
     </a>
@@ -66,6 +91,9 @@
         </span>
     </p>
 </span>
-<!--<footer   th:replace="layout :: footer"></footer>-->
+</div>
+
+<!--<div style="background-color: red" th:include="~{layout :: footer}"></div>-->
+<div th:replace="/furama/layout :: footer"></div>
 </body>
 </html>

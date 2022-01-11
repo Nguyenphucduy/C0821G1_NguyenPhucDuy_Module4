@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <div th:replace="/furama/layout :: head"></div>
 </head>
+<div th:replace="/furama/layout :: menu"></div>
 <p style="color: blue" th:text="${messenger}"></p>
 <body>
 <form action="/customer/admin/create" method="post" th:object="${customer}">
     <p>customerCode: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('customerCode')}" th:errors="*{customerCode}"></p>
     <input th:field="*{customerCode}"/>
     <p>customerName</p>
+    <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
     <input  th:field="*{name}"/>
     <p>customerDateOfBirth: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></p>
     <input type="date" th:field="*{dateOfBirth}"/>
     <p>customerGender</p>
-    <input  th:field="*{gender}"/>
+    <select th:field="*{gender}">
+        <option th:value="Male">Male</option>
+        <option th:value="FeMale">FeMale</option>
+    </select>
     <p>customerCardId: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('cardId')}" th:errors="*{cardId}"></p>
     <input th:field="*{cardId}"/>
     <p>customerPhoneNumber</p>
+    <p style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
     <input  th:field="*{phoneNumber}"/>
     <p>customerEmail: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
     <input th:field="*{email}"/>
     <p>customerAddress</p>
+    <p style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
     <input  th:field="*{address}"/>
     <select th:field="*{customerType}">
         <option th:each="customerType : ${customerTypes}" th:value="${customerType.customerTypeId}" th:text="${customerType.customerTypeName}"></option>
     </select>
     <input type="submit" value="create">
 </form>
+<div th:replace="/furama/layout :: footer"></div>
 </body>
 </html>

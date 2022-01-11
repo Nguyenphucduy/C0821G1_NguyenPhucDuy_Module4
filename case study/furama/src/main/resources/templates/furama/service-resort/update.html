@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/furama/layout :: head"></div>
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<h1>Update serviceResort</h1>
+<div >
+    <form th:action="@{/service-resort/admin/update}" th:object="${serviceResort}"
+          method="post"  >
+        <input type="hidden" th:field="*{serviceResortId}"/>
+        <p>codeServiceResort: </p>
+        <input th:field="*{codeServiceResort}" th:text="*{codeServiceResort}"/>
+        <p>usableArea</p>
+        <input  th:field="*{usableArea}" th:text="*{usableArea}"/>
+        <p>numberOfPeople: </p>
+        <input  th:field="*{numberOfPeople}" th:text="*{numberOfPeople}"/>
+        <p>standardRoomr</p>
+        <input  th:field="*{standardRoom}" th:text="*{standardRoom}"/>
+        <p>descriptionOtherConvenience: </p>
+        <input th:field="*{descriptionOtherConvenience}" th:text="*{descriptionOtherConvenience}"/>
+        <p>poolArea</p>
+        <input  th:field="*{poolArea}" th:text="*{poolArea}"/>
+        <p>numberOfFloors: </p>
+        <input th:field="*{numberOfFloors}" th:text="*{numberOfFloors}"/>
+        <select th:field="*{serviceType}">
+            <option th:each="serviceType : ${serviceTypes}" th:value="${serviceType.serviceTypeId}" th:text="${serviceType.serviceTypeName}"></option>
+        </select>
+        <select th:field="*{rentType}">
+            <option th:each="rentType : ${rentTypes}" th:value="${rentType.rentTypeId}" th:text="${rentType.rentTypeName}"></option>
+        </select>
+        <input type="submit" value="Update">
+    </form>
+</div>
+<div th:replace="/furama/layout :: footer"></div>
+</body>
+</html>

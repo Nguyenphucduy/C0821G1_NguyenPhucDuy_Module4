@@ -1,47 +1,56 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Customer List</title>
-</head>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/furama/layout :: head"></div>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
 <body>
 
+<div th:replace="/furama/layout :: menu"></div>
+
+
+<p style="color: blue" th:text="${messenger}" class="title"></p>
+
+<h1 >List Customer Using Service</h1>
+<div>
+    <table border="1">
+        <tr>
+            <th>Index</th>
+            <th>Customer Code</th>
+            <th>customerName</th>
+            <th>customerDateOfBirth</th>
+            <th>customerGender</th>
+            <th>customerCardId</th>
+            <th>customerPhoneNumber</th>
+            <th>customerEmail</th>
+            <th>customerAddress</th>
+            <th>customerType</th>
+            <th>Update</th>
+            <th>Delete</th>
+            <th>View</th>
+
+        </tr>
+        <tr th:each="customer,iterStar : ${customers}">
+            <td th:text="${iterStar.index}"></td>
+            <td th:text="${customer.customerCode}"></td>
+            <td th:text="${customer.name}"></td>
+            <td th:text="${customer.dateOfBirth}"></td>
+            <td th:text="${customer.gender}"></td>
+            <td th:text="${customer.cardId}"></td>
+            <td th:text="${customer.phoneNumber}"></td>
+            <td th:text="${customer.email}"></td>
+            <td th:text="${customer.address}"></td>
+            <td th:text="${customer.customerType.customerTypeName}"></td>
+            <td><a th:href="@{/customer/admin/{id}/update(id=${customer.customerId})}">update</a></td>
+
+
+            <td><a th:href="@{/customer/admin/{id}/delete(id=${customer.customerId})}">delete</a></td>
+
+
+            <td><a th:href="@{/customer/user/{id}/view(id=${customer.customerId})}">view</a></td>
+        </tr>
+    </table>
 </div>
-<p><a href="/customer/admin/create-page">Create Customer</a></p>
 
-
-
-<h1>Customer List</h1>
-<table border="1">
-    <tr>
-        <th>Index</th>
-        <th>Customer Code</th>
-        <th>customerName</th>
-        <th>customerDateOfBirth</th>
-        <th>customerGender</th>
-        <th>customerCardId</th>
-        <th>customerPhoneNumber</th>
-        <th>customerEmail</th>
-        <th>customerAddress</th>
-        <th>customerType</th>
-        <th>Update</th>
-        <th>Delete</th>
-        <th>View</th>
-
-    </tr>
-    <tr th:each="customer,iterStar : ${customers}">
-        <td th:text="${iterStar.index}"></td>
-        <td th:text="${customer.customerCode}"></td>
-        <td th:text="${customer.name}"></td>
-        <td th:text="${customer.dateOfBirth}"></td>
-        <td th:text="${customer.gender}"></td>
-        <td th:text="${customer.cardId}"></td>
-        <td th:text="${customer.phoneNumber}"></td>
-        <td th:text="${customer.email}"></td>
-        <td th:text="${customer.address}"></td>
-        <td th:text="${customer.customerType.customerTypeName}"></td>
-        <td><a th:href="@{/customer/admin/{id}/update(id=${customer.customerId})}">update</a></td>
-        <td><a th:href="@{/customer/admin/{id}/delete(id=${customer.customerId})}">delete</a></td>
-        <td><a th:href="@{/customer/user/{id}/view(id=${customer.customerId})}">view</a></td>
-    </tr>
-</table>
+<!--<div style="background-color: red" th:include="~{layout :: footer}"></div>-->
+<div th:replace="/furama/layout :: footer"></div>
 </body>
 </html>

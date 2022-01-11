@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/furama/layout :: head"></div>
+    <title>Employee List</title>
+</head>
+
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<p><a href="/employee/admin/create-page">Create Employee</a></p>
+
+
+<form action="/employee/user/search" method="post">
+    <label>Name employee:
+        <input type="text" name="name">
+    </label>
+    <button type="submit">Search</button>
+</form>
+
+
+<p style="color: blue" th:text="${messenger}"></p>
+
+<h1>employee List</h1>
+<table border="1">
+    <tr>
+        <th>Index</th>
+        <th>Employee Code</th>
+        <th>Name</th>
+        <th>DateOfBirth</th>
+        <th>Gender</th>
+        <th>CardId</th>
+        <th>PhoneNumber</th>
+        <th>Email</th>
+        <th>Address</th>
+        <th>employeeSalary</th>
+        <th>position</th>
+        <th>educationDegree</th>
+        <th>division</th>
+        <th>appUser</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>View</th>
+
+    </tr>
+    <tr th:each="employee,iterStar : ${employees}">
+        <td th:text="${iterStar.index}"></td>
+        <td th:text="${employee.employeeCode}"></td>
+        <td th:text="${employee.name}"></td>
+        <td th:text="${employee.dateOfBirth}"></td>
+        <td th:text="${employee.gender}"></td>
+        <td th:text="${employee.cardId}"></td>
+        <td th:text="${employee.phoneNumber}"></td>
+        <td th:text="${employee.email}"></td>
+        <td th:text="${employee.address}"></td>
+        <td th:text="${employee.employeeSalary}"></td>
+        <td th:text="${employee.position.positionName}"></td>
+        <td th:text="${employee.educationDegree.educationDegreeName}"></td>
+        <td th:text="${employee.division.divisionName}"></td>
+        <td th:text="${employee.appUser.userName}"></td>
+        <td><a th:href="@{/employee/admin/{id}/update(id=${employee.employeeId})}">update</a></td>
+        <td><a th:href="@{/employee/admin/{id}/delete(id=${employee.employeeId})}" onclick="return confirm('Are you sure you want to delete this item?')">delete</a></td>
+        <td><a th:href="@{/employee/user/{id}/view(id=${employee.employeeId})}">view</a></td>
+    </tr>
+</table>
+<span>
+    <a th:if="${employees.hasPrevious()}" th:href="@{/employee/user/list(page = ${employees.number - 1})}">
+        Previous
+    </a>
+     <a th:if="${employees.hasNext()}" th:href="@{/employee/user/list(page = ${employees.number + 1})}">
+        Next
+    </a>
+    <p>
+        <span th:each="pageNo: ${#numbers.sequence(0,employees.totalPages - 1)}">
+            <a th:href="@{/employee/user/list(page = ${pageNo})}" th:text="${pageNo}"></a>
+        </span>
+    </p>
+</span>
+<div th:replace="/furama/layout :: footer"></div>
+</body>
+</html>

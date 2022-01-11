@@ -1,28 +1,66 @@
 package furama.furama.dto.customer;
 
-public class CustomerDTO {
+import furama.furama.model.customer.CustomerType;
+import furama.furama.utils.CodeConstraint;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+public class CustomerDTO implements Validator {
+    @CodeConstraint()
+    @Pattern(regexp = "^KH\\d{4}$", message = "Tên bắt đầu KH  và  phải có 4 số")
+    @NotBlank(message = "mã khách hàng không được để trống (NotBlank)")
     private String customerCode;
+
+    @NotBlank(message = "tên không được để trống (NotBlank)")
+    @Pattern(regexp = "^[A-z ]{6,20}$", message = "Tên 9- > 12")
     private String name;
+
+    @NotBlank(message = " không được để trống (NotBlank)")
     private String dateOfBirth;
-    private String gender;
+
+    @NotBlank(message = "không được để trống (NotBlank)")
+    @Pattern(regexp = "^[0-9]{9,12}$", message = "cardId phải từ 9- > 12")
     private String cardId;
+
+    @NotBlank(message = "không được để trống (NotBlank)")
+    @Pattern(regexp = "^(090|091|8490|8491)\\d{7}$", message = "Số điện thoại phải từ 9- > 12 và bắt đầu bằng 090|091|8490|8491")
     private String phoneNumber;
+
+    @NotBlank(message = "không được để trống (NotBlank)")
+    @Pattern(regexp="(^\\w+@\\w+(\\.\\w+){1,2}$)",message = "Lỗi định dạng email")
     private String email;
+
+    @NotBlank(message = "không được để trống (NotBlank)")
+    @Pattern(regexp = "^[A-z ]{9,100}$", message = "địa chỉ không được phép quá 100 kí tự")
     private String address;
+
+    @NotBlank(message = " không được để trống (NotBlank)")
+    private String gender;
+
+    private CustomerType customerType;
+
+    public CustomerType getCustomerType() {
+        return customerType;
+    }
+
+    public void setCustomerType(CustomerType customerType) {
+        this.customerType = customerType;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
 
     public CustomerDTO() {
     }
 
-    public CustomerDTO(String customerCode, String name, String dateOfBirth, String gender, String cardId, String phoneNumber, String email, String address) {
-        this.customerCode = customerCode;
-        this.name = name;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.cardId = cardId;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-    }
 
     public String getCustomerCode() {
         return customerCode;
@@ -46,14 +84,6 @@ public class CustomerDTO {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public String getGender() {
-        return gender;
-    }
-
-    public void setGender(String gender) {
-        this.gender = gender;
     }
 
     public String getCardId() {
@@ -86,5 +116,32 @@ public class CustomerDTO {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        CustomerDTO customerDTO = (CustomerDTO) target; //Ép kiểu ngầm định
+        String dateOfBirth = customerDTO.dateOfBirth;
+        String today = String.valueOf(java.time.LocalDate.now());
+
+        String[] string1 = dateOfBirth.split("-");
+        String[] string2 = today.split("-");
+        String year1 = string1[0];
+        String year2 = string2[0];
+        String month1 = string1[1];
+        String month2 = string2[1];
+        String day1 = string1[2];
+        String day2 = string2[2];
+        int result1 = Integer.parseInt(year2) - Integer.parseInt(year1);
+        int result2 = Integer.parseInt(month2) - Integer.parseInt(month1);
+        int result3 = Integer.parseInt(day2) - Integer.parseInt(day1);
+        if(!(result1>=18&&result2>=0&&result3>=0)) {
+            errors.rejectValue("dateOfBirth", "age.invalidFormat");
+        }
     }
 }

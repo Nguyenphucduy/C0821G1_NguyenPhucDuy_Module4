@@ -22,7 +22,6 @@ public class AppConfig implements WebMvcConfigurer {
         return messageSource;
     }
 
-
     @Override
     public void addInterceptors(InterceptorRegistry registry){
         LocaleChangeInterceptor interceptor =new LocaleChangeInterceptor();

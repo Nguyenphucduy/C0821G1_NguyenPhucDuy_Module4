@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/furama/layout :: head"></div>
+</head>
+
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<p style="color: blue" th:text="${messenger}"></p>
+<form action="/employee/admin/create" method="post" th:object="${employee}">
+    <p>employeeCode: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('employeeCode')}" th:errors="*{employeeCode}"></p>
+    <input th:field="*{employeeCode}"/>
+    <p>Name</p>
+    <p style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    <input  th:field="*{name}"/>
+    <p>DateOfBirth: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></p>
+    <input type="date" th:field="*{dateOfBirth}"/>
+    <p>Gender</p>
+    <select th:field="*{gender}">
+        <option th:value="Male">Male</option>
+        <option th:value="FeMale">FeMale</option>
+    </select>
+    <p>CardId: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('cardId')}" th:errors="*{cardId}"></p>
+    <input th:field="*{cardId}"/>
+    <p>PhoneNumber</p>
+    <p style="color: red" th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></p>
+    <input  th:field="*{phoneNumber}"/>
+    <p>Email: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+    <input th:field="*{email}"/>
+    <p>Address</p>
+    <p style="color: red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+    <input  th:field="*{address}"/>
+    <p>Salary</p>
+    <p style="color: red" th:if="${#fields.hasErrors('employeeSalary')}" th:errors="*{employeeSalary}"></p>
+    <input  th:field="*{employeeSalary}"/>
+
+    <p>appUser</p>
+    <input  th:field="*{appUser.userName}"/>
+
+    <select th:field="*{position}">
+        <option th:each="position : ${positions}" th:value="${position.positionId}" th:text="${position.positionName}"></option>
+    </select>
+
+    <select th:field="*{educationDegree}">
+        <option th:each="educationDegree : ${educationDegrees}" th:value="${educationDegree.educationDegreeId}" th:text="${educationDegree.educationDegreeName}"></option>
+    </select>
+
+    <select th:field="*{division}">
+        <option th:each="division : ${divisions}" th:value="${division.divisionId}" th:text="${division.divisionName}"></option>
+    </select>
+
+    <input type="submit" value="create">
+</form>
+<div th:replace="/furama/layout :: footer"></div>
+</body>
+</html>

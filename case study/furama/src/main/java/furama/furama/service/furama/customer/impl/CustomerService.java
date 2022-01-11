@@ -1,5 +1,6 @@
 package furama.furama.service.furama.customer.impl;
 
+import furama.furama.dto.customer.CustomerDTO;
 import furama.furama.model.customer.Customer;
 import furama.furama.repository.customer.ICustomerRepository;
 import furama.furama.service.furama.customer.ICustomerService;
@@ -9,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 @Service
 public class CustomerService implements ICustomerService {
@@ -44,8 +46,19 @@ public class CustomerService implements ICustomerService {
         return iCustomerRepository.findByName(name);
     }
 
-//    @Override
-//    public Page<Customer> findByNamePage(String nameNew, PageRequest of) {
-//        return iCustomerRepository.findByNamePage(nameNew);
-//    }
+    @Override
+    public void saveCustomerDTO(CustomerDTO customerDTO) {
+        Customer customer = new Customer(customerDTO.getName(),customerDTO.getDateOfBirth(),customerDTO.getGender(),customerDTO.getCardId(),customerDTO.getPhoneNumber(),customerDTO.getEmail(),customerDTO.getAddress(),customerDTO.getCustomerCode(),customerDTO.getCustomerType());
+        iCustomerRepository.save(customer);
+    }
+
+    @Override
+    public List<Customer> findCustomerUsingService() {
+        return iCustomerRepository.findCustomerUsingService();
+    }
+
+    @Override
+    public Page<Customer> findByNamePage(String nameNew,Pageable of) {
+        return iCustomerRepository.findByNamePage(nameNew,of);
+    }
 }

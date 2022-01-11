@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/furama/layout :: head"></div>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<p style="color: blue" th:text="${messenger}"></p>
+<form action="/service-resort/admin/create" method="post" th:object="${serviceResort}">
+    <p>codeServiceResort: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('codeServiceResort')}" th:errors="*{codeServiceResort}"></p>
+    <input th:field="*{codeServiceResort}"/>
+    <p>usableArea</p>
+    <p style="color: red" th:if="${#fields.hasErrors('usableArea')}" th:errors="*{usableArea}"></p>
+    <input  th:field="*{usableArea}"/>
+    <p>numberOfPeople: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('numberOfPeople')}" th:errors="*{numberOfPeople}"></p>
+    <input  th:field="*{numberOfPeople}"/>
+    <p>standardRoomr</p>
+    <p style="color: red" th:if="${#fields.hasErrors('standardRoom')}" th:errors="*{standardRoom}"></p>
+    <input  th:field="*{standardRoom}"/>
+    <p>descriptionOtherConvenience: </p>
+    <input th:field="*{descriptionOtherConvenience}"/>
+    <p>poolArea</p>
+    <p style="color: red" th:if="${#fields.hasErrors('poolArea')}" th:errors="*{poolArea}"></p>
+    <input  th:field="*{poolArea}"/>
+    <p>numberOfFloors: </p>
+    <p style="color: red" th:if="${#fields.hasErrors('numberOfFloors')}" th:errors="*{numberOfFloors}"></p>
+    <input th:field="*{numberOfFloors}"/>
+    <select th:field="*{serviceType}">
+        <option th:each="serviceType : ${serviceTypes}" th:value="${serviceType.serviceTypeId}" th:text="${serviceType.serviceTypeName}"></option>
+    </select>
+    <select th:field="*{rentType}">
+        <option th:each="rentType : ${rentTypes}" th:value="${rentType.rentTypeId}" th:text="${rentType.rentTypeName}"></option>
+    </select>
+    <input type="submit" value="create">
+</form>
+<div th:replace="/furama/layout :: footer"></div>
+</body>
+</html>

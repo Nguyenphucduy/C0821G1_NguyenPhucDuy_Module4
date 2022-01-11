@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="/furama/layout :: head"></div>
+    <title>Service Resort List</title>
+</head>
+
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<p><a href="/service-resort/admin/create-page">Create Service Resort</a></p>
+
+
+<form action="/service-resort/user/search" method="post">
+    <label>Name service resort:
+        <input type="text" name="name">
+    </label>
+    <button type="submit">Search</button>
+</form>
+
+
+<p style="color: blue" th:text="${messenger}"></p>
+
+<h1>Service Resort List</h1>
+<table border="1">
+    <tr>
+        <th>Index</th>
+        <th>codeServiceResort</th>
+        <th>usableArea</th>
+        <th>rentCost</th>
+        <th>numberOfPeople</th>
+        <th>standardRoom</th>
+        <th>descriptionOtherConvenience</th>
+        <th>poolArea</th>
+        <th>numberOfFloors</th>
+        <th>serviceType</th>
+        <th>rentType</th>
+        <th>Update</th>
+        <th>Delete</th>
+        <th>View</th>
+
+    </tr>
+    <tr th:each="serviceResort,iterStar : ${serviceResorts}">
+        <td th:text="${iterStar.index}"></td>
+        <td th:text="${serviceResort.codeServiceResort}"></td>
+        <td th:text="${serviceResort.usableArea}"></td>
+        <td th:text="${serviceResort.rentType.rentTypeCost}"></td>
+        <td th:text="${serviceResort.numberOfPeople}"></td>
+        <td th:text="${serviceResort.standardRoom}"></td>
+        <td th:text="${serviceResort.descriptionOtherConvenience}"></td>
+        <td th:text="${serviceResort.poolArea}"></td>
+        <td th:text="${serviceResort.numberOfFloors}"></td>
+        <td th:text="${serviceResort.serviceType.serviceTypeName}"></td>
+        <td th:text="${serviceResort.rentType.rentTypeName}"></td>
+        <td><a th:href="@{/service-resort/admin/{id}/update(id=${serviceResort.serviceResortId})}">update</a></td>
+        <td><a th:href="@{/service-resort/admin/{id}/delete(id=${serviceResort.serviceResortId})}" onclick="return confirm('Are you sure you want to delete this item?')">delete</a></td>
+        <td><a th:href="@{/service-resort/user/{id}/view(id=${serviceResort.serviceResortId})}">view</a></td>
+    </tr>
+</table>
+<span>
+    <a th:if="${serviceResorts.hasPrevious()}" th:href="@{/service-resort/user/list(page = ${serviceResorts.number - 1})}">
+        Previous
+    </a>
+     <a th:if="${serviceResorts.hasNext()}" th:href="@{/service-resort/user/list(page = ${serviceResorts.number + 1})}">
+        Next
+    </a>
+    <p>
+        <span th:each="pageNo: ${#numbers.sequence(0,serviceResorts.totalPages - 1)}">
+            <a th:href="@{/service-resort/user/list(page = ${pageNo})}" th:text="${pageNo}"></a>
+        </span>
+    </p>
+</span>
+<div th:replace="/furama/layout :: footer"></div>
+</body>
+</html>

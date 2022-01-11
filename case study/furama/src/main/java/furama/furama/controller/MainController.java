@@ -14,22 +14,7 @@ import java.security.Principal;
 
 @Controller
 public class MainController {
-    //    @RequestMapping(value = "/userInfo", method = RequestMethod.GET)
-//    public String userInfo(Model model, Principal principal) {
-//
-//        // Sau khi user login thanh cong se co principal
-//        String userName = principal.getName();
-//
-//        System.out.println("User Name: " + userName);
-//
-//        User loginedUser = (User) ((Authentication) principal).getPrincipal();
-//
-//        String userInfo = WebUtils.toString(loginedUser);
-//        model.addAttribute("userInfo", userInfo);
-//
-//        return "userInfoPage";
-//    }
-    @GetMapping("/userInfo")
+    @GetMapping("/home")
     public String home(Model model,  Principal principal){
         User loginedUser = (User) ((Authentication) principal).getPrincipal();
 
@@ -39,7 +24,7 @@ public class MainController {
     }
     @GetMapping(value = {"/","/login"})
     public String loginPage() {
-        return "login";
+        return "furama/login";
     }
 
 
@@ -47,7 +32,6 @@ public class MainController {
     public String logoutSuccessfulPage(Model model, RedirectAttributes redirectAttributes) {
         redirectAttributes.addFlashAttribute("messenger","Bạn đã đăng xuất thành công");
         return "redirect:/login";
-//        return "logoutSuccessfulPage";
     }
 
     @RequestMapping(value = "/403", method = RequestMethod.GET)
@@ -65,7 +49,7 @@ public class MainController {
 
         }
 
-        return "403Page";
+        return "furama/403Page";
     }
 
 }

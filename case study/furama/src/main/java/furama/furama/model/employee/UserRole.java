@@ -6,12 +6,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user_role", //
-        uniqueConstraints = { //
+        uniqueConstraints = { //tránh trường hợp username trùng với rolename
                 @UniqueConstraint(name = "USER_ROLE_UK", columnNames = { "user_id", "role_id" }) })
 public class UserRole {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private Long id;
 

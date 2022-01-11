@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div   th:replace="/furama/layout :: head"></div>
+
+<body>
+
+<div   th:replace="/furama/layout :: menu"></div>
+
+<h1> 403 Page</h1>
+<h3 th:if="${message != null}" th:utext="${message}" style="color: red;"></h3>
+
+<div th:if="${userInfo != null}" th:utext="${userInfo}"></div>
+
+
+<div   th:replace="/furama/layout :: footer"></div>
+</body>
+
+</html>

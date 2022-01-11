@@ -1,0 +1,33 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Customer List</title>
+    <div th:replace="/furama/layout :: head"></div>
+</head>
+<body>
+<div th:replace="/furama/layout :: menu"></div>
+<h1>Customer List Using service</h1>
+<table border="1">
+    <tr>
+        <th>Index</th>
+        <th>attachServiceCode</th>
+        <th>attachServiceName</th>
+        <th>attachServiceUnit</th>
+        <th>attachServiceCost</th>
+        <th>attachServiceQuantity</th>
+        <th>attachServiceStatus</th>
+
+
+    </tr>
+    <tr th:each="attachService,iterStar : ${attachServices}">
+        <td th:text="${iterStar.count}"></td>
+        <td th:text="${attachService.attachServiceCode}"></td>
+        <td th:text="${attachService.attachServiceName}"></td>
+        <td th:text="${attachService.attachServiceUnit}"></td>
+        <td th:text="${attachService.attachServiceCost}"></td>
+        <td th:text="${attachService.attachServiceQuantity}"></td>
+        <td th:text="${attachService.attachServiceStatus}"></td>
+    </tr>
+</table>
+<div th:replace="/furama/layout :: footer"></div>
+</body>
+</html>
